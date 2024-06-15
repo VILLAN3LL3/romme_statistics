@@ -1,10 +1,10 @@
-import './App.css';
+import "./App.css";
 
-import { Container, createTheme, ThemeProvider } from '@mui/material';
-import { deDE } from '@mui/material/locale';
+import { Container, createTheme, ThemeProvider } from "@mui/material";
+import { deDE } from "@mui/material/locale";
 
-import { GameProvider } from './GameContext';
-import Page from './Page';
+import { GameProvider } from "../GameContext";
+import Page from "./Page";
 
 function App() {
   const theme = { ...createTheme(), deDE };

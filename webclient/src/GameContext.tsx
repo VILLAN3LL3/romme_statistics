@@ -1,7 +1,16 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
-import { Game } from './game.model';
-import { loadGames, postGame } from './game.service';
+import { Game } from "./game.model";
+import { loadGames, postGame } from "./game.service";
 
 export interface GameContextData {
   games: Game[];
@@ -43,22 +52,28 @@ function GameProvider({ children }: Readonly<{ children: ReactNode }>) {
     getGames();
   }, []);
 
-  const saveGame = async (newGame: Game) => {
-    setLoading(true);
-    try {
-      setGames([...games, newGame]);
-      await postGame(newGame);
-    } catch (error) {
-      setError((error as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const saveGame = useCallback(
+    async (newGame: Game) => {
+      setLoading(true);
+      try {
+        setGames([...games, newGame]);
+        await postGame(newGame);
+      } catch (error) {
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [games, setGames, setLoading, setError]
+  );
 
-  return (
-    <GameContext.Provider value={{ games, loading, error, saveGame }}>
-      {children}
-    </GameContext.Provider>
+  return useMemo(
+    () => (
+      <GameContext.Provider value={{ games, loading, error, saveGame }}>
+        {children}
+      </GameContext.Provider>
+    ),
+    [games, loading, error, saveGame, children]
   );
 }
 

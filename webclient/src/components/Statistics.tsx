@@ -1,8 +1,14 @@
-import Grid from '@mui/material/Unstable_Grid2';
+import Grid from "@mui/material/Unstable_Grid2";
 
-import { Game } from './game.model';
-import PlayerStatisticRow from './PlayerStatisticRow';
-import { calculateLastWon, calculatePercentage, getGameWithHighestScore, longestWinningStreak, sumUpScore } from './utils';
+import { Game } from "../game.model";
+import {
+  calculateLastWon,
+  calculatePercentage,
+  getGameWithHighestScore,
+  longestWinningStreak,
+  sumUpScore,
+} from "../utils";
+import PlayerStatisticRow from "./PlayerStatisticRow";
 
 export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
   if (games.length === 0) {
