@@ -45,3 +45,21 @@ export function calculateLastWon(games: Game[], winner: string): number {
   }
   return lastWon;
 }
+
+export function longestWinningStreak(games: Game[], player: string) {
+  let maxStreak = 0;
+  let currentStreak = 0;
+
+  for (const element of games) {
+    if (element.winner === player) {
+      currentStreak++;
+      if (currentStreak > maxStreak) {
+        maxStreak = currentStreak;
+      }
+    } else {
+      currentStreak = 0;
+    }
+  }
+
+  return maxStreak;
+}

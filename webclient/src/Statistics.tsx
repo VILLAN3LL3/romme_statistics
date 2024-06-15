@@ -2,7 +2,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 import { Game } from './game.model';
 import PlayerStatisticRow from './PlayerStatisticRow';
-import { calculateLastWon, calculatePercentage, getGameWithHighestScore, sumUpScore } from './utils';
+import { calculateLastWon, calculatePercentage, getGameWithHighestScore, longestWinningStreak, sumUpScore } from './utils';
 
 export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
   if (games.length === 0) {
@@ -46,7 +46,7 @@ export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
       </Grid>
 
       <PlayerStatisticRow
-        title="Summe Punkte"
+        title="Summe Minuspunkte"
         valueMicha={michaScore}
         valueMira={miraScore}
         successCalcMira={(valueMira, valueMicha) => valueMira < valueMicha}
@@ -68,6 +68,12 @@ export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
         title="Anzahl von Hand gewonnener Spiele"
         valueMicha={michaWonGames.filter((g) => g.vonHand).length}
         valueMira={miraWonGames.filter((g) => g.vonHand).length}
+        successCalcMira={(valueMira, valueMicha) => valueMira > valueMicha}
+      />
+      <PlayerStatisticRow
+        title="Längster Winning Streak"
+        valueMicha={longestWinningStreak(games, "Micha")}
+        valueMira={longestWinningStreak(games, "Mira")}
         successCalcMira={(valueMira, valueMicha) => valueMira > valueMicha}
       />
       <PlayerStatisticRow
