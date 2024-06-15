@@ -54,7 +54,7 @@ export function SpielForm({
       <Stack spacing={2}>
         <TextField
           required
-          label="Score"
+          label="Minuspunkte"
           name="score"
           value={formik.values.score}
           onChange={formik.handleChange}
