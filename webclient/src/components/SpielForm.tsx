@@ -62,6 +62,7 @@ export function SpielForm({
           error={formik.touched.score && Boolean(formik.errors.score)}
           helperText={formik.touched.score && formik.errors.score}
           autoComplete="off"
+          type="number"
         />
         <FormControl
           required
