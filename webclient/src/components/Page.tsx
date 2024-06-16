@@ -7,6 +7,7 @@ import {
   Backdrop,
   Box,
   CircularProgress,
+  Paper,
   Snackbar,
   Stack,
   Typography,
@@ -54,20 +55,12 @@ export default function Page() {
         </Alert>
       </Snackbar>
       <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
-        <Box
-          sx={{
-            borderRadius: 1,
-            paddingX: 3,
-            paddingY: 5,
-            backgroundColor: (theme) => theme.palette.background.paper,
-            color: (theme) => theme.palette.text.primary,
-          }}
-        >
+        <Paper sx={{ paddingX: 3, paddingY: 5 }}>
           <Alert severity="info" sx={{ marginBottom: 4 }}>
             {games.length % 2 === 0 ? "Micha" : "Mira"} muss Karten geben ...
           </Alert>
           <SpielForm onGameSave={handleGameSave} loading={loading} />
-        </Box>
+        </Paper>
       </Section>
       <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
         <Statistics games={games} />
