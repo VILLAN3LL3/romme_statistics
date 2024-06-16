@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { Game } from "../game.model";
+import { GameVM } from "../game.model";
 import {
   calculateLastWon,
   calculatePercentage,
@@ -10,7 +10,7 @@ import {
 } from "../utils";
 import PlayerStatisticRow from "./PlayerStatisticRow";
 
-export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
+export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
   if (games.length === 0) {
     return null;
   }
@@ -35,13 +35,11 @@ export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
       <Grid xs={6}>{games.length}</Grid>
 
       <Grid xs={6}>Höchster Gewinn:</Grid>
-      <Grid xs={6}>{`${
-        gameWithHighestScore.vonHand
-          ? gameWithHighestScore.score * 2
-          : gameWithHighestScore.score
-      } (gewonnen von ${gameWithHighestScore.winner} am ${new Date(
-        gameWithHighestScore.date
-      ).toLocaleDateString("de-DE")})`}</Grid>
+      <Grid xs={6}>{`${gameWithHighestScore.totalScore} (gewonnen von ${
+        gameWithHighestScore.winner
+      } am ${new Date(gameWithHighestScore.date).toLocaleDateString(
+        "de-DE"
+      )})`}</Grid>
       <Grid xs={12}>
         <hr />
       </Grid>
@@ -103,6 +101,3 @@ export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
     </Grid>
   );
 }
-
-// ToDo: Längste Gewinnserie
-// ToDo: Letzter Gewinn vor x Spielen

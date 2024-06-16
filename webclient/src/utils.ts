@@ -1,10 +1,7 @@
-import { Game } from "./game.model";
+import { Game, GameVM } from "./game.model";
 
-export function sumUpScore(games: Game[]): number {
-  return games.reduce(
-    (total, game) => total + (game.vonHand ? game.score * 2 : game.score),
-    0
-  );
+export function sumUpScore(games: GameVM[]): number {
+  return games.reduce((total, game) => total + game.totalScore, 0);
 }
 
 export function calculatePercentage(num1: number, num2: number): number {
@@ -16,10 +13,9 @@ function roundTo2Digits(num: number): number {
   return (Math.round(m) / 100) * Math.sign(num);
 }
 
-export function getGameWithHighestScore(games: Game[]): Game {
+export function getGameWithHighestScore(games: GameVM[]): GameVM {
   return games.reduce((highest, game) => {
-    const score = game.vonHand ? game.score * 2 : game.score;
-    return score > highest.score ? game : highest;
+    return game.totalScore > highest.totalScore ? game : highest;
   }, games[0]);
 }
 
