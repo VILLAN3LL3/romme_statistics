@@ -35,11 +35,13 @@ export default function Statistics({ games }: Readonly<{ games: Game[] }>) {
       <Grid xs={6}>{games.length}</Grid>
 
       <Grid xs={6}>Höchster Gewinn:</Grid>
-      <Grid xs={6}>{`${gameWithHighestScore.score} (gewonnen von ${
-        gameWithHighestScore.winner
-      } am ${new Date(gameWithHighestScore.date).toLocaleDateString(
-        "de-DE"
-      )})`}</Grid>
+      <Grid xs={6}>{`${
+        gameWithHighestScore.vonHand
+          ? gameWithHighestScore.score * 2
+          : gameWithHighestScore.score
+      } (gewonnen von ${gameWithHighestScore.winner} am ${new Date(
+        gameWithHighestScore.date
+      ).toLocaleDateString("de-DE")})`}</Grid>
       <Grid xs={12}>
         <hr />
       </Grid>

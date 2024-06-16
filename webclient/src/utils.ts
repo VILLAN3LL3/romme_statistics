@@ -1,4 +1,4 @@
-import { Game } from './game.model';
+import { Game } from "./game.model";
 
 export function sumUpScore(games: Game[]): number {
   return games.reduce(
@@ -18,7 +18,8 @@ function roundTo2Digits(num: number): number {
 
 export function getGameWithHighestScore(games: Game[]): Game {
   return games.reduce((highest, game) => {
-    return game.score > highest.score ? game : highest;
+    const score = game.vonHand ? game.score * 2 : game.score;
+    return score > highest.score ? game : highest;
   }, games[0]);
 }
 

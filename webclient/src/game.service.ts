@@ -1,4 +1,4 @@
-import { Game } from './game.model';
+import { Game } from "./game.model";
 
 const baseUrl = "http://localhost:3000/games";
 
@@ -18,6 +18,7 @@ export async function loadGames(): Promise<Game[]> {
 }
 
 export async function postGame(newGame: Game): Promise<string> {
+  console.log(JSON.stringify(newGame));
   const response = await fetch(baseUrl, {
     method: "POST",
     headers: {

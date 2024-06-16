@@ -61,6 +61,7 @@ export function SpielForm({
           onBlur={formik.handleBlur}
           error={formik.touched.score && Boolean(formik.errors.score)}
           helperText={formik.touched.score && formik.errors.score}
+          autoComplete="off"
         />
         <FormControl
           required

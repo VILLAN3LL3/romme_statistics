@@ -1,91 +1,590 @@
 [
-  { "score": 12, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 83, "winner": "Mira", "vonHand": true, "date": "2023-10-01" },
-  { "score": 29, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 5, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 9, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 7, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 115, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 2, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 5, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 4, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 140, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 53, "winner": "Mira", "vonHand": true, "date": "2023-10-01" },
-  { "score": 52, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 2, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 27, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 78, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 4, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 5, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 30, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 98, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 105, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 3, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 17, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 7, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 2, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 6, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 74, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 12, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 14, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 42, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 127, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 128, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 63, "winner": "Mira", "vonHand": true, "date": "2023-10-01" },
-  { "score": 6, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 3, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 28, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 69, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 26, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 8, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 10, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 12, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 4, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 9, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 20, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 106, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 132, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 31, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 97, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 2, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 3, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 106, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 120, "winner": "Micha", "vonHand": true, "date": "2023-10-01" },
-  { "score": 10, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 26, "winner": "Micha", "vonHand": false, "date": "2023-10-01" },
-  { "score": 116, "winner": "Mira", "vonHand": true, "date": "2023-10-01" },
-  { "score": 6, "winner": "Mira", "vonHand": false, "date": "2023-10-01" },
-  { "score": 6, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 28, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 5, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 52, "winner": "Micha", "vonHand": true, "date": "2024-06-14" },
-  { "score": 11, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 103, "winner": "Mira", "vonHand": true, "date": "2024-06-14" },
-  { "score": 17, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 113, "winner": "Mira", "vonHand": true, "date": "2024-06-14" },
-  { "score": 12, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 93, "winner": "Mira", "vonHand": true, "date": "2024-06-14" },
-  { "score": 104, "winner": "Mira", "vonHand": true, "date": "2024-06-14" },
-  { "score": 83, "winner": "Mira", "vonHand": true, "date": "2024-06-14" },
-  { "score": 7, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 36, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 24, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 97, "winner": "Micha", "vonHand": true, "date": "2024-06-14" },
-  { "score": 6, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 81, "winner": "Mira", "vonHand": true, "date": "2024-06-14" },
-  { "score": 3, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 3, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 48, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 2, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 20, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 4, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 2, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 3, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 133, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 108, "winner": "Micha", "vonHand": true, "date": "2024-06-14" },
-  { "score": 11, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 6, "winner": "Mira", "vonHand": false, "date": "2024-06-14" },
-  { "score": 36, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 3, "winner": "Micha", "vonHand": false, "date": "2024-06-14" },
-  { "score": 23, "winner": "Micha", "vonHand": false, "date": "2024-06-14" }
+  {
+    "score": 12,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 83,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 29,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 5,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 9,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 7,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 115,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 2,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 5,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 4,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 140,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 53,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 52,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 2,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 27,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 78,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 4,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 5,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 30,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 98,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 105,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 3,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 17,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 7,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 2,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 6,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 74,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 12,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 14,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 42,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 127,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 128,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 63,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 6,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 3,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 28,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 69,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 26,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 8,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 10,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 12,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 4,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 9,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 20,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 106,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 132,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 31,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 97,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 2,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 3,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 106,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 120,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 10,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 26,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 116,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 6,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2023-10-01"
+  },
+  {
+    "score": 6,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 28,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 5,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 52,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 11,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 103,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 17,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 113,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 12,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 93,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 104,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 83,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 7,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 36,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 24,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 97,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 6,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 81,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 3,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 3,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 48,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 2,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 20,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 4,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 2,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 3,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 133,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 108,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 11,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 6,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 36,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 3,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 23,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-14"
+  },
+  {
+    "score": 107,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 24,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 19,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 4,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 25,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 7,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 4,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 4,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 26,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-16"
+  }
 ]
