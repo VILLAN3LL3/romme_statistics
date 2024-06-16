@@ -9,6 +9,7 @@ import {
   longestVonHandWinningStreak,
   longestWinningStreak,
   sumUpScore,
+  toGermanDateString,
 } from "../utils";
 import GameStatisticRow from "./GameStatisticRow";
 import PlayerStatisticHeader from "./PlayerStatisticHeader";
@@ -44,9 +45,7 @@ export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
         title="Höchster Gewinn"
         value={`${gameWithHighestScore.totalScore} (gewonnen von ${
           gameWithHighestScore.winner
-        } am ${new Date(gameWithHighestScore.date).toLocaleDateString(
-          "de-DE"
-        )})`}
+        } am ${toGermanDateString(gameWithHighestScore.date)})`}
       />
       <PlayerStatisticHeader />
       <PlayerStatisticRow

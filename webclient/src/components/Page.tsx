@@ -3,18 +3,12 @@ import { useContext, useState } from "react";
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
-import {
-  Alert,
-  Backdrop,
-  CircularProgress,
-  Paper,
-  Snackbar,
-  Stack,
-} from "@mui/material";
+import { Alert, Backdrop, CircularProgress, Paper, Stack } from "@mui/material";
 
 import { Game } from "../game.model";
 import { GameContext } from "../GameContext";
 import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
+import GameTable from "./GameTable";
 import Section from "./Section";
 import { SpielForm } from "./SpielForm";
 import Statistics from "./Statistics";
@@ -60,7 +54,9 @@ export default function Page() {
       <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
         <Statistics games={games} />
       </Section>
-      <Section title="Spielauflistung" Icon={ListAltRounded}></Section>
+      <Section title="Spieltabelle" Icon={ListAltRounded}>
+        <GameTable games={games} />
+      </Section>
     </Stack>
   );
 }

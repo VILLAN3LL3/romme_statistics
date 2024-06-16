@@ -78,3 +78,17 @@ export function longestVonHandWinningStreak(games: GameVM[], player: string) {
 
   return maxStreak;
 }
+
+export function toGermanDateString(date: string): string {
+  return new Date(date).toLocaleDateString("de-DE");
+}
+
+export function calculateLostScore(
+  games: GameVM[],
+  index: number,
+  player: string
+) {
+  return games.slice(0, index + 1).reduce((sum, game) => {
+    return game.winner !== player ? sum + game.totalScore : sum;
+  }, 0);
+}
