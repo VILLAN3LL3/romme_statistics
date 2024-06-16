@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
 
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
+import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
 import {
   Alert,
   Backdrop,
-  Box,
   CircularProgress,
   Paper,
   Snackbar,
   Stack,
-  Typography,
 } from "@mui/material";
 
 import { Game } from "../game.model";
 import { GameContext } from "../GameContext";
+import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
 import Section from "./Section";
 import { SpielForm } from "./SpielForm";
 import Statistics from "./Statistics";
@@ -45,15 +45,10 @@ export default function Page() {
 
   return (
     <Stack spacing={5}>
-      <Snackbar
+      <GameDataSavedSnackbar
         open={isSnackbarOpen}
         onClose={() => setIsSnackbarOpen(false)}
-        autoHideDuration={6000}
-      >
-        <Alert severity="success" variant="filled" sx={{ width: "100%" }}>
-          Spieldaten wurden gesichert!
-        </Alert>
-      </Snackbar>
+      />
       <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
         <Paper sx={{ paddingX: 3, paddingY: 5 }}>
           <Alert severity="info" sx={{ marginBottom: 4 }}>
@@ -65,6 +60,7 @@ export default function Page() {
       <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
         <Statistics games={games} />
       </Section>
+      <Section title="Spielauflistung" Icon={ListAltRounded}></Section>
     </Stack>
   );
 }
