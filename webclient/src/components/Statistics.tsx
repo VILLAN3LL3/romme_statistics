@@ -5,6 +5,7 @@ import {
   calculateLastWon,
   calculatePercentage,
   getGameWithHighestScore,
+  longestVonHandWinningStreak,
   longestWinningStreak,
   sumUpScore,
 } from "../utils";
@@ -71,15 +72,21 @@ export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
         valueFunction={(value) => `${value} %`}
       />
       <PlayerStatisticRow
+        title="Längster Winning Streak"
+        valueMicha={longestWinningStreak(games, "Micha")}
+        valueMira={longestWinningStreak(games, "Mira")}
+        successCalcMira={(valueMira, valueMicha) => valueMira > valueMicha}
+      />
+      <PlayerStatisticRow
         title="Anzahl von Hand gewonnener Spiele"
         valueMicha={michaWonGames.filter((g) => g.vonHand).length}
         valueMira={miraWonGames.filter((g) => g.vonHand).length}
         successCalcMira={(valueMira, valueMicha) => valueMira > valueMicha}
       />
       <PlayerStatisticRow
-        title="Längster Winning Streak"
-        valueMicha={longestWinningStreak(games, "Micha")}
-        valueMira={longestWinningStreak(games, "Mira")}
+        title="Längster von Hand Winning Streak"
+        valueMicha={longestVonHandWinningStreak(games, "Micha")}
+        valueMira={longestVonHandWinningStreak(games, "Mira")}
         successCalcMira={(valueMira, valueMicha) => valueMira > valueMicha}
       />
       <PlayerStatisticRow

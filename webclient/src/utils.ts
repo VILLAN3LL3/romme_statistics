@@ -1,4 +1,4 @@
-import { Game, GameVM } from "./game.model";
+import { GameVM } from "./game.model";
 
 export function sumUpScore(games: GameVM[]): number {
   return games.reduce((total, game) => total + game.totalScore, 0);
@@ -31,7 +31,7 @@ export function formatDate(date: Date) {
   return [year, month, day].join("-");
 }
 
-export function calculateLastWon(games: Game[], winner: string): number {
+export function calculateLastWon(games: GameVM[], winner: string): number {
   let lastWon = 0;
   for (let index = games.length - 1; index > -1; index--) {
     const element = games[index];
@@ -43,12 +43,30 @@ export function calculateLastWon(games: Game[], winner: string): number {
   return lastWon;
 }
 
-export function longestWinningStreak(games: Game[], player: string) {
+export function longestWinningStreak(games: GameVM[], player: string) {
   let maxStreak = 0;
   let currentStreak = 0;
 
   for (const element of games) {
     if (element.winner === player) {
+      currentStreak++;
+      if (currentStreak > maxStreak) {
+        maxStreak = currentStreak;
+      }
+    } else {
+      currentStreak = 0;
+    }
+  }
+
+  return maxStreak;
+}
+
+export function longestVonHandWinningStreak(games: GameVM[], player: string) {
+  let maxStreak = 0;
+  let currentStreak = 0;
+
+  for (const element of games) {
+    if (element.winner === player && element.vonHand) {
       currentStreak++;
       if (currentStreak > maxStreak) {
         maxStreak = currentStreak;
