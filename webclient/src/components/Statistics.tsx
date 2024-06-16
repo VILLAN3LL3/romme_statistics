@@ -9,6 +9,8 @@ import {
   longestWinningStreak,
   sumUpScore,
 } from "../utils";
+import GameStatisticRow from "./GameStatisticRow";
+import PlayerStatisticHeader from "./PlayerStatisticHeader";
 import PlayerStatisticRow from "./PlayerStatisticRow";
 
 export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
@@ -32,26 +34,16 @@ export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
 
   return (
     <Grid container spacing={2}>
-      <Grid xs={6}>Anzahl Spiele:</Grid>
-      <Grid xs={6}>{games.length}</Grid>
-
-      <Grid xs={6}>Höchster Gewinn:</Grid>
-      <Grid xs={6}>{`${gameWithHighestScore.totalScore} (gewonnen von ${
-        gameWithHighestScore.winner
-      } am ${new Date(gameWithHighestScore.date).toLocaleDateString(
-        "de-DE"
-      )})`}</Grid>
-      <Grid xs={12}>
-        <hr />
-      </Grid>
-      <Grid xs={6}></Grid>
-      <Grid xs={3}>
-        <strong>Mira</strong>
-      </Grid>
-      <Grid xs={3}>
-        <strong>Micha</strong>
-      </Grid>
-
+      <GameStatisticRow title="Anzahl Spiele" value={games.length} />
+      <GameStatisticRow
+        title="Höchster Gewinn"
+        value={`${gameWithHighestScore.totalScore} (gewonnen von ${
+          gameWithHighestScore.winner
+        } am ${new Date(gameWithHighestScore.date).toLocaleDateString(
+          "de-DE"
+        )})`}
+      />
+      <PlayerStatisticHeader />
       <PlayerStatisticRow
         title="Summe Minuspunkte"
         valueMicha={michaScore}
