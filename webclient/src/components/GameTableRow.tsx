@@ -24,7 +24,7 @@ export default function GameTableRow({
         {isMiraWinner && game.vonHand && (
           <>
             &nbsp;
-            <BackHandOutlinedIcon fontSize="small" />
+            <BackHandOutlinedIcon color="success" fontSize="small" />
           </>
         )}
       </TableCell>
@@ -34,7 +34,7 @@ export default function GameTableRow({
         {!isMiraWinner && game.vonHand && (
           <>
             &nbsp;
-            <BackHandOutlinedIcon fontSize="small" />
+            <BackHandOutlinedIcon color="success" fontSize="small" />
           </>
         )}
       </TableCell>

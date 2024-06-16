@@ -1,8 +1,6 @@
 import {
   createContext,
-  Dispatch,
   PropsWithChildren,
-  SetStateAction,
   useCallback,
   useEffect,
   useMemo,
@@ -25,10 +23,6 @@ const GameContext = createContext<GameContextData>({
   error: undefined,
   saveGame: undefined,
 });
-
-const GameDispatchContext = createContext<
-  Dispatch<SetStateAction<Game[]>> | undefined
->(undefined);
 
 function GameProvider({ children }: Readonly<PropsWithChildren>) {
   const [games, setGames] = useState<GameVM[]>([]);
@@ -84,4 +78,4 @@ function GameProvider({ children }: Readonly<PropsWithChildren>) {
   );
 }
 
-export { GameProvider, GameContext, GameDispatchContext };
+export { GameProvider, GameContext };
