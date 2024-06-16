@@ -42,20 +42,20 @@ function GameProvider({ children }: Readonly<PropsWithChildren>) {
     };
   };
 
-  const getGames = async () => {
-    setLoading(true);
-    let loadedGames = [];
-    try {
-      loadedGames = await loadGames();
-      setGames(loadedGames.map((g) => mapGameToGameVm(g)));
-    } catch (error) {
-      setError((error as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getGames = async () => {
+      setLoading(true);
+      let loadedGames = [];
+      try {
+        loadedGames = await loadGames();
+        setGames(loadedGames.map((g) => mapGameToGameVm(g)));
+      } catch (error) {
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     getGames();
   }, []);
 

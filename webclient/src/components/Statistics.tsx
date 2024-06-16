@@ -48,6 +48,9 @@ export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
           gameWithHighestScore.winner
         } am ${toGermanDateString(gameWithHighestScore.date)})`}
       />
+      <Grid xs={12}>
+        <hr />
+      </Grid>
       <PlayerStatisticHeader />
       <PlayerStatisticRow
         title="Summe Minuspunkte"
@@ -102,7 +105,12 @@ export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
           value === 0 ? "Letztes Spiel gewonnen!" : value
         }
       />
-      <DiffChart games={games} />
+      <Grid xs={12}>
+        <hr />
+      </Grid>
+      <Grid xs={12}>
+        <DiffChart games={games} />
+      </Grid>
     </Grid>
   );
 }

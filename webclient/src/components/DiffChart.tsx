@@ -56,7 +56,7 @@ export default function DiffChart({ games }: Readonly<{ games: GameVM[] }>) {
     labels,
     datasets: [
       {
-        label: "Punktedifferenz",
+        label: "Punktedifferenz Mira - Micha",
         data: diff,
         borderColor: theme.palette.primary.dark,
         backgroundColor: theme.palette.primary.light,
