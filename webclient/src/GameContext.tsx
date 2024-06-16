@@ -1,6 +1,7 @@
 import {
   createContext,
   Dispatch,
+  PropsWithChildren,
   ReactNode,
   SetStateAction,
   useCallback,
@@ -30,7 +31,7 @@ const GameDispatchContext = createContext<
   Dispatch<SetStateAction<Game[]>> | undefined
 >(undefined);
 
-function GameProvider({ children }: Readonly<{ children: ReactNode }>) {
+function GameProvider({ children }: Readonly<PropsWithChildren>) {
   const [games, setGames] = useState<GameVM[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);

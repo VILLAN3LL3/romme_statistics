@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { GameVM } from "../game.model";
@@ -15,7 +16,11 @@ import PlayerStatisticRow from "./PlayerStatisticRow";
 
 export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
   if (games.length === 0) {
-    return null;
+    return (
+      <Alert severity="info">
+        Keine Daten aus vergangenen Spielen vorhanden.
+      </Alert>
+    );
   }
   const miraWonGames = games.filter((game) => game.winner === "Mira");
   const michaWonGames = games.filter((game) => game.winner === "Micha");

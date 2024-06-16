@@ -14,6 +14,7 @@ import {
 
 import { Game } from "../game.model";
 import { GameContext } from "../GameContext";
+import Section from "./Section";
 import { SpielForm } from "./SpielForm";
 import Statistics from "./Statistics";
 
@@ -52,10 +53,7 @@ export default function Page() {
           Spieldaten wurden gesichert!
         </Alert>
       </Snackbar>
-      <Box sx={{ textAlign: "left" }}>
-        <Typography variant="h2">
-          <SportsKabaddiRoundedIcon sx={{ fontSize: 40 }} /> Aktuelles Spiel
-        </Typography>
+      <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
         <Box
           sx={{
             borderRadius: 1,
@@ -70,13 +68,10 @@ export default function Page() {
           </Alert>
           <SpielForm onGameSave={handleGameSave} loading={loading} />
         </Box>
-      </Box>
-      <Box sx={{ textAlign: "left" }}>
-        <Typography variant="h2">
-          <AutoGraphRoundedIcon sx={{ fontSize: 40 }} /> Statistik
-        </Typography>
+      </Section>
+      <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
         <Statistics games={games} />
-      </Box>
+      </Section>
     </Stack>
   );
 }
