@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { Box, SvgIconTypeMap, Typography } from "@mui/material";
+import { Box, Paper, SvgIconTypeMap, Typography } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 
 export interface SectionProps extends PropsWithChildren {
@@ -19,7 +19,7 @@ export default function Section({
         <Icon sx={{ fontSize: 40 }} />
         &nbsp;{title}
       </Typography>
-      {children}
+      <Paper sx={{ paddingX: 3, paddingY: 5 }}>{children}</Paper>
     </Box>
   );
 }

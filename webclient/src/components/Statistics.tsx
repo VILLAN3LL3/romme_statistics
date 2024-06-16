@@ -11,6 +11,7 @@ import {
   sumUpScore,
   toGermanDateString,
 } from "../utils";
+import DiffChart from "./DiffChart";
 import GameStatisticRow from "./GameStatisticRow";
 import PlayerStatisticHeader from "./PlayerStatisticHeader";
 import PlayerStatisticRow from "./PlayerStatisticRow";
@@ -101,6 +102,7 @@ export default function Statistics({ games }: Readonly<{ games: GameVM[] }>) {
           value === 0 ? "Letztes Spiel gewonnen!" : value
         }
       />
+      <DiffChart games={games} />
     </Grid>
   );
 }

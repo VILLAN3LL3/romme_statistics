@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
-import { Alert, Backdrop, CircularProgress, Paper, Stack } from "@mui/material";
+import { Alert, Backdrop, CircularProgress, Stack } from "@mui/material";
 
 import { Game } from "../game.model";
 import { GameContext } from "../GameContext";
@@ -44,12 +44,10 @@ export default function Page() {
         onClose={() => setIsSnackbarOpen(false)}
       />
       <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
-        <Paper sx={{ paddingX: 3, paddingY: 5 }}>
-          <Alert severity="info" sx={{ marginBottom: 4 }}>
-            {games.length % 2 === 0 ? "Micha" : "Mira"} muss Karten geben ...
-          </Alert>
-          <SpielForm onGameSave={handleGameSave} loading={loading} />
-        </Paper>
+        <Alert severity="info" sx={{ marginBottom: 4 }}>
+          {games.length % 2 === 0 ? "Micha" : "Mira"} muss Karten geben ...
+        </Alert>
+        <SpielForm onGameSave={handleGameSave} loading={loading} />
       </Section>
       <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
         <Statistics games={games} />

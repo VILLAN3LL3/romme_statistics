@@ -23,7 +23,7 @@ export default function PlayerStatisticRow({
         sx={{
           color: (theme) =>
             successCalcMira(valueMira, valueMicha)
-              ? theme.palette.success.light
+              ? theme.palette.success.dark
               : "inherit",
         }}
       >
@@ -34,7 +34,7 @@ export default function PlayerStatisticRow({
         sx={{
           color: (theme) =>
             !successCalcMira(valueMira, valueMicha)
-              ? theme.palette.success.light
+              ? theme.palette.success.dark
               : "inherit",
         }}
       >
