@@ -4,53 +4,44 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 export interface PlayerStatisticRowProps {
   title: string;
-  valueMira: number;
-  valueMicha: number;
-  successCalcMira: (valueMira: number, valueMicha: number) => boolean;
-  valueFunction?: (value: number) => string | number;
+  valueMap: Map<string, number>;
+  leaderFn: (valuePlayer: number, valueOthers: number[]) => boolean;
+  valueFn?: (value: number) => string | number;
 }
 
 export default function PlayerStatisticRow({
   title,
-  valueMicha,
-  valueMira,
-  successCalcMira,
-  valueFunction,
+  valueMap,
+  leaderFn,
+  valueFn,
 }: Readonly<PlayerStatisticRowProps>) {
-  const displayedValueMira = valueFunction
-    ? valueFunction(valueMira)
-    : valueMira;
-  const displayedValueMicha = valueFunction
-    ? valueFunction(valueMicha)
-    : valueMicha;
-  const isSuccessForMira = successCalcMira(valueMira, valueMicha);
+  if (!valueMap) {
+    return <Grid xs={12}>N/A</Grid>;
+  }
   return (
     <>
       <Grid xs={6}>{title}</Grid>
-      <Grid xs={3}>
-        {isSuccessForMira ? (
-          <Chip
-            color="success"
-            icon={<StarBorder />}
-            label={displayedValueMira}
-            variant="outlined"
-          />
-        ) : (
-          displayedValueMira
-        )}
-      </Grid>
-      <Grid xs={3}>
-        {!isSuccessForMira ? (
-          <Chip
-            color="success"
-            icon={<StarBorder />}
-            label={displayedValueMicha}
-            variant="outlined"
-          />
-        ) : (
-          displayedValueMicha
-        )}
-      </Grid>
+      {Array.from(valueMap.keys()).map((key) => {
+        const filteredValueMap = new Map(valueMap);
+        filteredValueMap.delete(key);
+        const value = valueMap.get(key) ?? 0;
+        const isLeader = leaderFn(value, Array.from(filteredValueMap.values()));
+        const displayedValue = valueFn ? valueFn(value) : value;
+        return (
+          <Grid xs={3} key={key}>
+            {isLeader ? (
+              <Chip
+                color="success"
+                icon={<StarBorder />}
+                label={displayedValue}
+                variant="outlined"
+              />
+            ) : (
+              displayedValue
+            )}
+          </Grid>
+        );
+      })}
     </>
   );
 }

@@ -8,10 +8,17 @@ export default function GameTableRow({
   game,
   index,
   games,
-}: Readonly<{ game: GameVM; index: number; games: GameVM[] }>) {
-  const isMiraWinner = game.winner === "Mira";
-  const lostScoreMicha = calculateLostScore(games, index, "Micha");
-  const lostScoreMira = calculateLostScore(games, index, "Mira");
+  players,
+}: Readonly<{
+  game: GameVM;
+  index: number;
+  games: GameVM[];
+  players: string[];
+}>) {
+  const lostScoreByPlayer = new Map<string, number>();
+  players.forEach((player) =>
+    lostScoreByPlayer.set(player, calculateLostScore(games, index, player))
+  );
 
   return (
     <TableRow>
@@ -19,27 +26,27 @@ export default function GameTableRow({
         {index + 1}
       </TableCell>
       <TableCell>{toGermanDateString(game.date)}</TableCell>
-      <TableCell align="right">
-        {isMiraWinner ? "-" : game.totalScore}
-        {isMiraWinner && game.vonHand && (
+      {players.map((player) => {
+        const isWinner = game.winner === player;
+        return (
           <>
-            &nbsp;
-            <BackHandOutlinedIcon color="success" fontSize="small" />
+            <TableCell align="right">
+              {isWinner ? "-" : game.totalScore}
+              {isWinner && game.vonHand && (
+                <>
+                  &nbsp;
+                  <BackHandOutlinedIcon color="success" fontSize="small" />
+                </>
+              )}
+            </TableCell>
+            <TableCell align="right">{lostScoreByPlayer.get(player)}</TableCell>
           </>
-        )}
-      </TableCell>
-      <TableCell align="right">{lostScoreMira}</TableCell>
+        );
+      })}
       <TableCell align="right">
-        {isMiraWinner ? game.totalScore : "-"}
-        {!isMiraWinner && game.vonHand && (
-          <>
-            &nbsp;
-            <BackHandOutlinedIcon color="success" fontSize="small" />
-          </>
-        )}
+        {lostScoreByPlayer.values().next().value -
+          lostScoreByPlayer.values().next().value}
       </TableCell>
-      <TableCell align="right">{lostScoreMicha}</TableCell>
-      <TableCell align="right">{lostScoreMira - lostScoreMicha}</TableCell>
     </TableRow>
   );
 }

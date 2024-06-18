@@ -1,8 +1,8 @@
-import { Game } from "./game.model";
+import { Game, GameDto } from "./game.model";
 
 const baseUrl = "http://localhost:3000/games";
 
-export async function loadGames(): Promise<Game[]> {
+export async function loadGameDto(): Promise<GameDto> {
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
   const requestOptions = {

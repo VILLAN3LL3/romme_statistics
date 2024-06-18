@@ -7,11 +7,12 @@ import {
   useState,
 } from "react";
 
-import { Game, GameVM } from "./game.model";
-import { loadGames, postGame } from "./game.service";
+import { Game, GameDto, GameVM } from "./game.model";
+import { loadGameDto, postGame } from "./game.service";
 
 export interface GameContextData {
   games: GameVM[];
+  players: string[];
   loading: boolean;
   error?: string;
   saveGame?: (newGame: Game) => Promise<void>;
@@ -19,6 +20,7 @@ export interface GameContextData {
 
 const GameContext = createContext<GameContextData>({
   games: [],
+  players: [],
   loading: false,
   error: undefined,
   saveGame: undefined,
@@ -26,6 +28,7 @@ const GameContext = createContext<GameContextData>({
 
 function GameProvider({ children }: Readonly<PropsWithChildren>) {
   const [games, setGames] = useState<GameVM[]>([]);
+  const [players, setPlayers] = useState<string[]>([]);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -39,10 +42,11 @@ function GameProvider({ children }: Readonly<PropsWithChildren>) {
   useEffect(() => {
     const getGames = async () => {
       setLoading(true);
-      let loadedGames = [];
+      let dto: GameDto = { games: [], players: [] };
       try {
-        loadedGames = await loadGames();
-        setGames(loadedGames.map((g) => mapGameToGameVm(g)));
+        dto = await loadGameDto();
+        setGames(dto.games.map((g) => mapGameToGameVm(g)));
+        setPlayers(dto.players);
       } catch (error) {
         setError((error as Error).message);
       } finally {
@@ -70,11 +74,13 @@ function GameProvider({ children }: Readonly<PropsWithChildren>) {
 
   return useMemo(
     () => (
-      <GameContext.Provider value={{ games, loading, error, saveGame }}>
+      <GameContext.Provider
+        value={{ games, players, loading, error, saveGame }}
+      >
         {children}
       </GameContext.Provider>
     ),
-    [games, loading, error, saveGame, children]
+    [games, players, loading, error, saveGame, children]
   );
 }
 
