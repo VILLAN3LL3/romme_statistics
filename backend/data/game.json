@@ -586,5 +586,41 @@
     "winner": "Mira",
     "vonHand": false,
     "date": "2024-06-16"
+  },
+  {
+    "score": 120,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 19,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 7,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 7,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 7,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-16"
+  },
+  {
+    "score": 26,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-16"
   }
 ]
