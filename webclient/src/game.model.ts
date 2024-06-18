@@ -1,3 +1,8 @@
+export interface GameDto {
+  games: Game[];
+  players: string[];
+}
+
 export interface Game {
   score: number;
   winner: string;

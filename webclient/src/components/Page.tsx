@@ -14,9 +14,9 @@ import { SpielForm } from "./SpielForm";
 import Statistics from "./Statistics";
 
 export default function Page() {
-  const { games, error, loading, saveGame } = useContext(GameContext);
+  const { games, players, error, loading, saveGame } = useContext(GameContext);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-
+  console.log(players);
   function handleGameSave(game: Game) {
     saveGame?.(game);
     setIsSnackbarOpen(true);
