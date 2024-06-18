@@ -1,14 +1,7 @@
-import {
-  createContext,
-  PropsWithChildren,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Game, GameDto, GameVM } from "./game.model";
-import { loadGameDto, postGame } from "./game.service";
+import { Game, GameDto, GameVM } from './game.model';
+import { loadGameDto, postGameData } from './game.service';
 
 export interface GameContextData {
   games: GameVM[];
@@ -62,7 +55,7 @@ function GameProvider({ children }: Readonly<PropsWithChildren>) {
       setLoading(true);
       try {
         setGames([...games, newGame].map((g) => mapGameToGameVm(g)));
-        await postGame(newGame, players);
+        await postGameData(newGame, players);
       } catch (error) {
         setError((error as Error).message);
       } finally {

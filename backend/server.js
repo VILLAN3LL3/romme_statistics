@@ -13,37 +13,34 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// GET endpoint
-app.get('/games', (req, res) => {
-    fs.readdir('data', (err, files) => {
+app.get('/games/:filename', (req, res) => {
+    const { filename } = req.params;
+    const filepath = path.join('data', `${filename}.json`);
+
+    fs.access(filepath, fs.constants.F_OK, (err) => {
         if (err) {
-            res.status(500).send('Error reading data directory');
-        } else {
-            const jsonFile = files.find(file => path.extname(file) === '.json');
-            if (jsonFile) {
-                fs.readFile(`data/${jsonFile}`, (err, data) => {
-                    if (err) {
-                        res.status(500).send('Error reading game data');
-                    } else {
-                        const players = path.basename(jsonFile, '.json').split('_');
-                        if (players.lenght < 2) {
-                            res.status(422).send("The number of players falls below the minimum value of 2");
-                        }
-                        if (players.length > 2) {
-                            res.status(422).send("The number of players exceeds the permitted value of 2");
-                        }
-                        const games = JSON.parse(data);
-                        res.send({ games, players });
-                    }
-                });
-            } else {
-                res.status(404).send('No JSON file found in data directory');
-            }
+            return res.status(404).send('No JSON file found with the provided filename');
         }
+
+        fs.readFile(filepath, (err, data) => {
+            if (err) {
+                return res.status(500).send('Error reading game data');
+            }
+
+            const players = filename.split('_');
+            if (players.length < 2) {
+                return res.status(422).send("The number of players falls below the minimum value of 2");
+            }
+            if (players.length > 2) {
+                return res.status(422).send("The number of players exceeds the permitted value of 2");
+            }
+
+            const games = JSON.parse(data);
+            res.send({ games, players });
+        });
     });
 });
 
-// POST endpoint
 app.post('/games/:filename', (req, res) => {
     const { filename } = req.params;
     fs.readFile(`data/${filename}.json`, (err, data) => {
@@ -63,5 +60,31 @@ app.post('/games/:filename', (req, res) => {
     });
 });
 
+app.post('/games', (req, res) => {
+    const { players } = req.body;
+
+    if (!Array.isArray(players) || players.length !== 2) {
+        return res.status(422).send('Invalid players array. It should contain exactly two players.');
+    }
+
+    const filename = players.join('_');
+    const filepath = path.join(__dirname, 'data', `${filename}.json`);
+
+    fs.access(filepath, fs.constants.F_OK, (err) => {
+        if (!err) {
+            return res.status(422).send('A file with the same name already exists.');
+        }
+
+        fs.writeFile(filepath, JSON.stringify([], null, 2), (err) => {
+            if (err) {
+                return res.status(500).send('Error writing game data.');
+            }
+
+            res.status(201).send('Game file created.');
+        });
+    });
+});
+
+
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on port ${port}`))
+app.listen(port, () => console.log(`Server running on port ${port}`));
