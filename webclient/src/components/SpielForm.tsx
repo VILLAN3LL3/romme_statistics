@@ -29,9 +29,11 @@ const validationSchema = yup.object({
 export function SpielForm({
   onGameSave,
   loading,
+  players,
 }: Readonly<{
   onGameSave: (game: Game) => void;
   loading: boolean;
+  players: string[];
 }>) {
   const formik = useFormik({
     initialValues: {
@@ -75,8 +77,14 @@ export function SpielForm({
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
           >
-            <FormControlLabel value="Mira" control={<Radio />} label="Mira" />
-            <FormControlLabel value="Micha" control={<Radio />} label="Micha" />
+            {players.map((player) => (
+              <FormControlLabel
+                key={player}
+                value={player}
+                control={<Radio />}
+                label={player}
+              />
+            ))}
           </RadioGroup>
           <FormHelperText>
             {formik.touched.winner && formik.errors.winner}

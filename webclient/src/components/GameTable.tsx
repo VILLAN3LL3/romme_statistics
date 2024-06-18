@@ -9,23 +9,34 @@ import {
 import { GameVM } from "../game.model";
 import GameTableRow from "./GameTableRow";
 
-export default function GameTable({ games }: Readonly<{ games: GameVM[] }>) {
+export default function GameTable({
+  games,
+  players,
+}: Readonly<{ games: GameVM[]; players: string[] }>) {
   return (
     <Table size="small" aria-label="a dense table">
       <TableHead>
         <TableRow>
           <TableCell>No.</TableCell>
           <TableCell>Datum</TableCell>
-          <TableCell align="right">Mira (aktuelles Spiel)</TableCell>
-          <TableCell align="right">Mira (Summe)</TableCell>
-          <TableCell align="right">Micha (aktuelles Spiel)</TableCell>
-          <TableCell align="right">Micha (Summe)</TableCell>
+          {players.map((player) => (
+            <>
+              <TableCell align="right">{player} (aktuelles Spiel)</TableCell>
+              <TableCell align="right">{player} (Summe)</TableCell>
+            </>
+          ))}
           <TableCell align="right">Differenz</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {games.map((game, i, games) => (
-          <GameTableRow key={i} game={game} index={i} games={games} />
+          <GameTableRow
+            key={i}
+            game={game}
+            index={i}
+            games={games}
+            players={players}
+          />
         ))}
       </TableBody>
     </Table>

@@ -26,6 +26,12 @@ app.get('/games', (req, res) => {
                         res.status(500).send('Error reading game data');
                     } else {
                         const players = path.basename(jsonFile, '.json').split('_');
+                        if (players.lenght < 2) {
+                            res.status(422).send("The number of players falls below the minimum value of 2");
+                        }
+                        if (players.length > 2) {
+                            res.status(422).send("The number of players exceeds the permitted value of 2");
+                        }
                         const games = JSON.parse(data);
                         res.send({ games, players });
                     }
