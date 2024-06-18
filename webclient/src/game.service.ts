@@ -1,4 +1,4 @@
-import { Game, GameDto } from "./game.model";
+import { Game, GameDto } from './game.model';
 
 const baseUrl = "http://localhost:3000/games";
 
@@ -17,9 +17,12 @@ export async function loadGameDto(): Promise<GameDto> {
   return response.json();
 }
 
-export async function postGame(newGame: Game): Promise<string> {
+export async function postGame(
+  newGame: Game,
+  players: string[]
+): Promise<string> {
   console.log(JSON.stringify(newGame));
-  const response = await fetch(baseUrl, {
+  const response = await fetch(`${baseUrl}/${players.join("_")}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

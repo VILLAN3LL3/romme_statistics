@@ -44,14 +44,15 @@ app.get('/games', (req, res) => {
 });
 
 // POST endpoint
-app.post('/games', (req, res) => {
-    fs.readFile('data/game.json', (err, data) => {
+app.post('/games/:filename', (req, res) => {
+    const { filename } = req.params;
+    fs.readFile(`data/${filename}.json`, (err, data) => {
         if (err) {
             res.status(500).send('Error reading game data');
         } else {
             const games = JSON.parse(data);
             games.push(req.body);
-            fs.writeFile('data/game.json', JSON.stringify(games, null, 2), (err) => {
+            fs.writeFile(`data/${filename}.json`, JSON.stringify(games, null, 2), (err) => {
                 if (err) {
                     res.status(500).send('Error writing game data');
                 } else {
@@ -60,7 +61,6 @@ app.post('/games', (req, res) => {
             });
         }
     });
-});
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => console.log(`Server running on port ${port}`));
