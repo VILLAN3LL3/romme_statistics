@@ -13,13 +13,11 @@ import { postGameData } from "../game.service";
 import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
 import GameTable from "./GameTable";
 import Section from "./Section";
-import { SpielForm } from "./SpielForm";
+import SpielForm from "./SpielForm";
 import Statistics from "./Statistics";
 
 export default function GamePage() {
-  const initialData = useLoaderData() as Awaited<
-    ReturnType<ReturnType<typeof gameLoader>>
-  >;
+  const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameLoader>>>;
   const params = useParams();
   const {
     data: { players, games },
@@ -31,9 +29,10 @@ export default function GamePage() {
   });
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation(postGameData, {
+  const { mutate } = useMutation({
+    mutationFn: postGameData,
     onSuccess: () => {
-      queryClient.invalidateQueries(["game", ...players]);
+      queryClient.invalidateQueries({ queryKey: ["game", ...players] });
       setIsSnackbarOpen(true);
     },
   });
@@ -46,10 +45,7 @@ export default function GamePage() {
 
   if (isLoading) {
     return (
-      <Backdrop
-        open={true}
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      >
+      <Backdrop open={true} sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <CircularProgress color="inherit" />
       </Backdrop>
     );
@@ -61,19 +57,12 @@ export default function GamePage() {
 
   return (
     <Stack spacing={5}>
-      <GameDataSavedSnackbar
-        open={isSnackbarOpen}
-        onClose={() => setIsSnackbarOpen(false)}
-      />
+      <GameDataSavedSnackbar open={isSnackbarOpen} onClose={() => setIsSnackbarOpen(false)} />
       <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
         <Alert severity="info" sx={{ marginBottom: 4 }}>
           {players[games.length % players.length]} muss Karten geben ...
         </Alert>
-        <SpielForm
-          onGameSave={handleGameSave}
-          loading={isLoading}
-          players={players}
-        />
+        <SpielForm onGameSave={handleGameSave} loading={isLoading} players={players} />
       </Section>
       <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
         <Statistics games={games} players={players} />
