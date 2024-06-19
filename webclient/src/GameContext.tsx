@@ -62,14 +62,14 @@ function GameProvider({ children }: Readonly<PropsWithChildren>) {
       setLoading(true);
       try {
         setGames([...games, newGame].map((g) => mapGameToGameVm(g)));
-        await postGame(newGame);
+        await postGame(newGame, players);
       } catch (error) {
         setError((error as Error).message);
       } finally {
         setLoading(false);
       }
     },
-    [games, setGames, setLoading, setError]
+    [games, players, setGames, setLoading, setError]
   );
 
   return useMemo(

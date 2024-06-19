@@ -622,5 +622,65 @@
     "winner": "Micha",
     "vonHand": false,
     "date": "2024-06-16"
+  },
+  {
+    "score": 108,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 87,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 100,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 83,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 2,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 15,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 119,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 10,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 94,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2024-06-19"
+  },
+  {
+    "score": 10,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2024-06-19"
   }
 ]

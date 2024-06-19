@@ -65,6 +65,7 @@ export function SpielForm({
           helperText={formik.touched.score && formik.errors.score}
           autoComplete="off"
           type="number"
+          onFocus={(evt) => evt.target.select()}
         />
         <FormControl
           required
