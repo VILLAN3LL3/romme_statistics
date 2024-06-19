@@ -1,5 +1,10 @@
-export interface GameDto {
+export interface GameDataDto {
   games: Game[];
+  players: string[];
+}
+
+export interface PostGameDataDto {
+  newGame: Game;
   players: string[];
 }
 
@@ -12,4 +17,9 @@ export interface Game {
 
 export interface GameVM extends Game {
   totalScore: number;
+}
+
+export interface GameDataVM {
+  games: GameVM[];
+  players: string[];
 }

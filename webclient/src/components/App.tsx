@@ -1,15 +1,18 @@
-import './App.css';
+import "./App.css";
 
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import { Container, createTheme, ThemeProvider } from '@mui/material';
-import { deDE } from '@mui/material/locale';
+import { Container, createTheme, ThemeProvider } from "@mui/material";
+import { deDE } from "@mui/material/locale";
+import { QueryClient } from "@tanstack/react-query";
 
-import { GameProvider } from '../GameContext';
-import Page from './Page';
+import { gameLoader } from "../game.query";
+import ErrorPage from "./ErrorPage";
+import GamePage from "./GamePage";
 
 function App() {
   const theme = { ...createTheme(), deDE };
+  const queryClient = new QueryClient();
 
   const router = createBrowserRouter([
     {
@@ -19,14 +22,12 @@ function App() {
           <Outlet />
         </Container>
       ),
+      errorElement: <ErrorPage />,
       children: [
         {
           path: ":players",
-          element: (
-            <GameProvider>
-              <Page />
-            </GameProvider>
-          ),
+          loader: gameLoader(queryClient),
+          element: <GamePage />,
         },
       ],
     },

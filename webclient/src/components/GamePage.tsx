@@ -1,28 +1,50 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
 import { Alert, Backdrop, CircularProgress, Stack } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Game } from "../game.model";
-import { GameContext } from "../GameContext";
+import { gameLoader, GameQuery } from "../game.query";
+import { postGameData } from "../game.service";
 import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
 import GameTable from "./GameTable";
 import Section from "./Section";
 import { SpielForm } from "./SpielForm";
 import Statistics from "./Statistics";
 
-export default function Page() {
-  const { games, players, error, loading, saveGame } = useContext(GameContext);
+export default function GamePage() {
+  const initialData = useLoaderData() as Awaited<
+    ReturnType<ReturnType<typeof gameLoader>>
+  >;
+  const params = useParams();
+  const {
+    data: { players, games },
+    isLoading,
+    error,
+  } = useQuery({
+    ...GameQuery(params.players?.split("_") ?? []),
+    initialData,
+  });
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation(postGameData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["game", ...players]);
+      setIsSnackbarOpen(true);
+    },
+  });
+
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  console.log(players);
-  function handleGameSave(game: Game) {
-    saveGame?.(game);
-    setIsSnackbarOpen(true);
+
+  function handleGameSave(newGame: Game) {
+    mutate({ newGame, players });
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Backdrop
         open={true}
@@ -34,7 +56,7 @@ export default function Page() {
   }
 
   if (error) {
-    return <Alert severity="error">{error}</Alert>;
+    return <Alert severity="error">{error.message}</Alert>;
   }
 
   return (
@@ -49,7 +71,7 @@ export default function Page() {
         </Alert>
         <SpielForm
           onGameSave={handleGameSave}
-          loading={loading}
+          loading={isLoading}
           players={players}
         />
       </Section>
