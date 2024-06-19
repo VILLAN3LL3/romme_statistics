@@ -60,6 +60,21 @@ app.post('/games/:filename', (req, res) => {
     });
 });
 
+app.get('/games', (req, res) => {
+    const directoryPath = path.join(__dirname, 'data');
+
+    fs.readdir(directoryPath, (err, files) => {
+        if (err) {
+            return res.status(500).send('Unable to scan directory: ' + err);
+        }
+
+        const jsonFiles = files
+            .filter(file => path.extname(file) === '.json')
+            .map(file => path.basename(file, '.json'));
+        res.send(jsonFiles);
+    });
+});
+
 app.post('/games', (req, res) => {
     const { players } = req.body;
 

@@ -4,27 +4,28 @@ import { useLoaderData, useParams } from "react-router-dom";
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
-import { Alert, Backdrop, CircularProgress, Stack } from "@mui/material";
+import { Alert, Stack } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { Game } from "../game.model";
-import { gameLoader, GameQuery } from "../game.query";
+import { gameDataLoader, GameDataQuery, getGameDataQueryKey } from "../game.query";
 import { postGameData } from "../game.service";
 import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
 import GameTable from "./GameTable";
+import LoadingIndicator from "./LoadingIndicator";
 import Section from "./Section";
 import SpielForm from "./SpielForm";
 import Statistics from "./Statistics";
 
 export default function GamePage() {
-  const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameLoader>>>;
+  const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameDataLoader>>>;
   const params = useParams();
   const {
     data: { players, games },
     isLoading,
     error,
   } = useQuery({
-    ...GameQuery(params.players?.split("_") ?? []),
+    ...GameDataQuery(params.players?.split("_") ?? []),
     initialData,
   });
   const queryClient = useQueryClient();
@@ -32,7 +33,7 @@ export default function GamePage() {
   const { mutate } = useMutation({
     mutationFn: postGameData,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["game", ...players] });
+      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(players) });
       setIsSnackbarOpen(true);
     },
   });
@@ -44,11 +45,7 @@ export default function GamePage() {
   }
 
   if (isLoading) {
-    return (
-      <Backdrop open={true} sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    );
+    return <LoadingIndicator />;
   }
 
   if (error) {

@@ -1,14 +1,15 @@
-import './App.css';
+import "./App.css";
 
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
-import { Container, createTheme, ThemeProvider } from '@mui/material';
-import { deDE } from '@mui/material/locale';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Container, createTheme, ThemeProvider } from "@mui/material";
+import { deDE } from "@mui/material/locale";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { gameLoader } from '../game.query';
-import ErrorPage from './ErrorPage';
-import GamePage from './GamePage';
+import { gameDataLoader, gameLoader } from "../game.query";
+import ErrorPage from "./ErrorPage";
+import GamePage from "./GamePage";
+import OverviewPage from "./OverviewPage";
 
 function App() {
   const theme = { ...createTheme(), deDE };
@@ -27,8 +28,13 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: ":players",
+          path: "games",
           loader: gameLoader(queryClient),
+          element: <OverviewPage />,
+        },
+        {
+          path: "games/:players",
+          loader: gameDataLoader(queryClient),
           element: <GamePage />,
         },
       ],

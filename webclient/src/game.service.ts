@@ -13,9 +13,21 @@ const mapGameToGameVm = (game: Game): GameVM => {
   };
 };
 
-export async function loadGameDto(
-  players: string[]
-): Promise<{ players: string[]; games: GameVM[] }> {
+export async function loadGames(): Promise<string[]> {
+  const headers = new Headers();
+  headers.set("Content-Type", "application/json");
+  const requestOptions = {
+    method: "GET",
+    headers: headers,
+  };
+  const response = await fetch(baseUrl, requestOptions);
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return response.json();
+}
+
+export async function loadGameDto(players: string[]): Promise<{ players: string[]; games: GameVM[] }> {
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
   const requestOptions = {
@@ -23,10 +35,7 @@ export async function loadGameDto(
     headers: headers,
   };
 
-  const response = await fetch(
-    `${baseUrl}/${createPlayersRequestParameter(players)}`,
-    requestOptions
-  );
+  const response = await fetch(`${baseUrl}/${createPlayersRequestParameter(players)}`, requestOptions);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
@@ -38,16 +47,13 @@ export async function loadGameDto(
 }
 
 export async function postGameData(gameData: PostGameDataDto): Promise<string> {
-  const response = await fetch(
-    `${baseUrl}/${createPlayersRequestParameter(gameData.players)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(gameData.newGame),
-    }
-  );
+  const response = await fetch(`${baseUrl}/${createPlayersRequestParameter(gameData.players)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(gameData.newGame),
+  });
 
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -56,16 +62,13 @@ export async function postGameData(gameData: PostGameDataDto): Promise<string> {
 }
 
 export async function postGame(players: string[]): Promise<void> {
-  const response = await fetch(
-    `${baseUrl}/${createPlayersRequestParameter(players)}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ players }),
-    }
-  );
+  const response = await fetch(`${baseUrl}/${createPlayersRequestParameter(players)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ players }),
+  });
 
   if (!response.ok) {
     throw new Error(response.statusText);
