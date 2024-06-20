@@ -8,15 +8,15 @@ import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
 import { Alert, Button, Stack } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import GameDataSavedSnackbar from "../components/GameDataSavedSnackbar";
+import GameTable from "../components/GameTable";
+import LoadingIndicator from "../components/LoadingIndicator";
+import Section from "../components/Section";
+import SpielForm from "../components/SpielForm";
+import Statistics from "../components/Statistics";
 import { GameRound } from "../game.model";
 import { gameDataLoader, GameDataQuery, getGameDataQueryKey } from "../game.query";
 import { postGameData } from "../game.service";
-import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
-import GameTable from "./GameTable";
-import LoadingIndicator from "./LoadingIndicator";
-import Section from "./Section";
-import SpielForm from "./SpielForm";
-import Statistics from "./Statistics";
 
 export default function GamePage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameDataLoader>>>;

@@ -9,9 +9,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { gameDataLoader, gameLoader } from "../game.query";
 
-const OverviewPage = lazy(() => import("./OverviewPage"));
-const GamePage = lazy(() => import("./GamePage"));
-const ErrorPage = lazy(() => import("./ErrorPage"));
+const OverviewPage = lazy(() => import("../pages/OverviewPage"));
+const GamePage = lazy(() => import("../pages/GamePage"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 
 function App() {
   const theme = { ...createTheme(), deDE };

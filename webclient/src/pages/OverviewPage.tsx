@@ -7,11 +7,11 @@ import RecentActorsRoundedIcon from "@mui/icons-material/RecentActorsRounded";
 import { Alert, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import LoadingIndicator from "../components/LoadingIndicator";
+import NewGameDialog from "../components/NewGameDialog";
+import Section from "../components/Section";
 import { gameLoader, GameQuery, getGameDataQueryKey } from "../game.query";
 import { postGame } from "../game.service";
-import LoadingIndicator from "./LoadingIndicator";
-import NewGameDialog from "./NewGameDialog";
-import Section from "./Section";
 
 export default function OverviewPage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameLoader>>>;
