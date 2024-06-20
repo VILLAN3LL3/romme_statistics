@@ -12,28 +12,17 @@ import { Line } from "react-chartjs-2";
 
 import { useTheme } from "@mui/material";
 
-import { GameVM } from "../game.model";
+import { GameRoundVM } from "../game.model";
 import { calculateLostScore } from "../utils";
 
-export default function DiffChart({
-  games,
-  players,
-}: Readonly<{ games: GameVM[]; players: string[] }>) {
+export default function DiffChart({ games, players }: Readonly<{ games: GameRoundVM[]; players: string[] }>) {
   const theme = useTheme();
 
   if (!games || !players) {
     return null;
   }
 
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+  ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
   const options = {
     responsive: true,
@@ -51,10 +40,7 @@ export default function DiffChart({
   const diff: number[] = [];
 
   for (let index = 0; index < games.length; index++) {
-    diff.push(
-      calculateLostScore(games, index, players.at(0)!) -
-        calculateLostScore(games, index, players.at(1)!)
-    );
+    diff.push(calculateLostScore(games, index, players.at(0)!) - calculateLostScore(games, index, players.at(1)!));
   }
 
   const labels = Array.from({ length: games.length }, (_, i) => i + 1);

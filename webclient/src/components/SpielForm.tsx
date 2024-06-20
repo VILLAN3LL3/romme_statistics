@@ -16,7 +16,7 @@ import {
   TextField,
 } from "@mui/material";
 
-import { Game } from "../game.model";
+import { GameRound } from "../game.model";
 import { formatDate } from "../utils";
 
 yup.setLocale(de);
@@ -26,12 +26,12 @@ const validationSchema = yup.object({
   winner: yup.string().required(),
 });
 
-export function SpielForm({
+export default function SpielForm({
   onGameSave,
   loading,
   players,
 }: Readonly<{
-  onGameSave: (game: Game) => void;
+  onGameSave: (game: GameRound) => void;
   loading: boolean;
   players: string[];
 }>) {
@@ -67,39 +67,18 @@ export function SpielForm({
           type="number"
           onFocus={(evt) => evt.target.select()}
         />
-        <FormControl
-          required
-          error={formik.touched.winner && Boolean(formik.errors.score)}
-        >
+        <FormControl required error={formik.touched.winner && Boolean(formik.errors.score)}>
           <FormLabel sx={{ textAlign: "left" }}>Gewinner</FormLabel>
-          <RadioGroup
-            row
-            name="winner"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          >
+          <RadioGroup row name="winner" onChange={formik.handleChange} onBlur={formik.handleBlur}>
             {players.map((player) => (
-              <FormControlLabel
-                key={player}
-                value={player}
-                control={<Radio />}
-                label={player}
-              />
+              <FormControlLabel key={player} value={player} control={<Radio />} label={player} />
             ))}
           </RadioGroup>
-          <FormHelperText>
-            {formik.touched.winner && formik.errors.winner}
-          </FormHelperText>
+          <FormHelperText>{formik.touched.winner && formik.errors.winner}</FormHelperText>
         </FormControl>
         <FormGroup>
           <FormControlLabel
-            control={
-              <Checkbox
-                name="vonHand"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-            }
+            control={<Checkbox name="vonHand" onChange={formik.handleChange} onBlur={formik.handleBlur} />}
             label="von Hand?"
           />
         </FormGroup>

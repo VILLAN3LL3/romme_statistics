@@ -1,6 +1,6 @@
-import { GameVM } from "./game.model";
+import { GameRoundVM } from "./game.model";
 
-export function sumUpScore(games: GameVM[]): number {
+export function sumUpScore(games: GameRoundVM[]): number {
   return games.reduce((total, game) => total + game.totalScore, 0);
 }
 
@@ -13,7 +13,7 @@ function roundTo2Digits(num: number): number {
   return (Math.round(m) / 100) * Math.sign(num);
 }
 
-export function getGameWithHighestScore(games: GameVM[]): GameVM {
+export function getGameWithHighestScore(games: GameRoundVM[]): GameRoundVM {
   return games.reduce((highest, game) => {
     return game.totalScore > highest.totalScore ? game : highest;
   }, games[0]);
@@ -31,7 +31,7 @@ export function formatDate(date: Date) {
   return [year, month, day].join("-");
 }
 
-export function calculateLastWon(games: GameVM[], winner: string): number {
+export function calculateLastWon(games: GameRoundVM[], winner: string): number {
   let lastWon = 0;
   for (let index = games.length - 1; index > -1; index--) {
     const element = games[index];
@@ -43,7 +43,7 @@ export function calculateLastWon(games: GameVM[], winner: string): number {
   return lastWon;
 }
 
-export function longestWinningStreak(games: GameVM[], player: string) {
+export function longestWinningStreak(games: GameRoundVM[], player: string) {
   let maxStreak = 0;
   let currentStreak = 0;
 
@@ -61,7 +61,7 @@ export function longestWinningStreak(games: GameVM[], player: string) {
   return maxStreak;
 }
 
-export function longestVonHandWinningStreak(games: GameVM[], player: string) {
+export function longestVonHandWinningStreak(games: GameRoundVM[], player: string) {
   let maxStreak = 0;
   let currentStreak = 0;
 
@@ -83,11 +83,7 @@ export function toGermanDateString(date: string): string {
   return new Date(date).toLocaleDateString("de-DE");
 }
 
-export function calculateLostScore(
-  games: GameVM[],
-  index: number,
-  player: string
-) {
+export function calculateLostScore(games: GameRoundVM[], index: number, player: string) {
   return games.slice(0, index + 1).reduce((sum, game) => {
     return game.winner !== player ? sum + game.totalScore : sum;
   }, 0);
