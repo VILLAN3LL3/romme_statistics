@@ -1,5 +1,6 @@
 import "./App.css";
 
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
 
 import { Container, createTheme, ThemeProvider } from "@mui/material";
@@ -7,9 +8,10 @@ import { deDE } from "@mui/material/locale";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { gameDataLoader, gameLoader } from "../game.query";
-import ErrorPage from "./ErrorPage";
-import GamePage from "./GamePage";
-import OverviewPage from "./OverviewPage";
+
+const OverviewPage = lazy(() => import("./OverviewPage"));
+const GamePage = lazy(() => import("./GamePage"));
+const ErrorPage = lazy(() => import("./ErrorPage"));
 
 function App() {
   const theme = { ...createTheme(), deDE };
@@ -51,7 +53,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<p>Lädt...</p>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </ThemeProvider>
   );
 }
