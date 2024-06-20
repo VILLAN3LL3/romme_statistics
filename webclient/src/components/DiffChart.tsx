@@ -13,7 +13,7 @@ import { Line } from "react-chartjs-2";
 import { useTheme } from "@mui/material";
 
 import { GameRoundVM } from "../game.model";
-import { calculateLostScore } from "../utils";
+import { calculateLostScore } from "../utils/game-round.utils";
 
 export default function DiffChart({ games, players }: Readonly<{ games: GameRoundVM[]; players: string[] }>) {
   const theme = useTheme();

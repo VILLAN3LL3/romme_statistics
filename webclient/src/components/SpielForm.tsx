@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 import { GameRound } from "../game.model";
-import { formatDate } from "../utils";
+import { formatDate } from "../utils/date.utils";
 
 yup.setLocale(de);
 

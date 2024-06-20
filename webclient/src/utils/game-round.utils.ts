@@ -1,37 +1,16 @@
-import { GameRoundVM } from "./game.model";
+import { GameRoundVM } from "../game.model";
 
 export function sumUpScore(games: GameRoundVM[]): number {
   return games.reduce((total, game) => total + game.totalScore, 0);
 }
 
-export function calculatePercentage(num1: number, num2: number): number {
-  return roundTo2Digits((num1 / num2) * 100);
-}
-
-function roundTo2Digits(num: number): number {
-  const m = Number((Math.abs(num) * 100).toPrecision(15));
-  return (Math.round(m) / 100) * Math.sign(num);
-}
-
-export function getGameWithHighestScore(games: GameRoundVM[]): GameRoundVM {
+export function getGameRoundWithHighestScore(games: GameRoundVM[]): GameRoundVM {
   return games.reduce((highest, game) => {
     return game.totalScore > highest.totalScore ? game : highest;
   }, games[0]);
 }
 
-export function formatDate(date: Date) {
-  const d = new Date(date);
-  let month = "" + (d.getMonth() + 1);
-  let day = "" + d.getDate();
-  const year = d.getFullYear();
-
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
-
-  return [year, month, day].join("-");
-}
-
-export function calculateLastWon(games: GameRoundVM[], winner: string): number {
+export function calculateLastWonGameRound(games: GameRoundVM[], winner: string): number {
   let lastWon = 0;
   for (let index = games.length - 1; index > -1; index--) {
     const element = games[index];
@@ -77,10 +56,6 @@ export function longestVonHandWinningStreak(games: GameRoundVM[], player: string
   }
 
   return maxStreak;
-}
-
-export function toGermanDateString(date: string): string {
-  return new Date(date).toLocaleDateString("de-DE");
 }
 
 export function calculateLostScore(games: GameRoundVM[], index: number, player: string) {

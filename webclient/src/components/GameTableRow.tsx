@@ -4,7 +4,8 @@ import BackHandOutlinedIcon from "@mui/icons-material/BackHandOutlined";
 import { TableCell, TableRow } from "@mui/material";
 
 import { GameRoundVM } from "../game.model";
-import { calculateLostScore, toGermanDateString } from "../utils";
+import { toGermanDateString } from "../utils/date.utils";
+import { calculateLostScore } from "../utils/game-round.utils";
 
 export default function GameTableRow({
   game,

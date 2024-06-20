@@ -2,15 +2,15 @@ import { Alert } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { GameRoundVM } from "../game.model";
+import { toGermanDateString } from "../utils/date.utils";
 import {
-  calculateLastWon,
-  calculatePercentage,
-  getGameWithHighestScore,
+  calculateLastWonGameRound,
+  getGameRoundWithHighestScore,
   longestVonHandWinningStreak,
   longestWinningStreak,
   sumUpScore,
-  toGermanDateString,
-} from "../utils";
+} from "../utils/game-round.utils";
+import { calculatePercentage } from "../utils/number.utils";
 import DiffChart from "./DiffChart";
 import GameStatisticRow from "./GameStatisticRow";
 import PlayerStatisticHeader from "./PlayerStatisticHeader";
@@ -46,10 +46,10 @@ export default function Statistics({
     vonHandWonGamesCountByPlayer.set(player, wonGames.filter((g) => g.vonHand).length);
     longestVonHandWinningStreakByPlayer.set(player, longestVonHandWinningStreak(gameRounds, player));
     averageScoreByPlayer.set(player, lostGames.length ? score / lostGames.length : 0);
-    lastWonByPlayer.set(player, calculateLastWon(gameRounds, player));
+    lastWonByPlayer.set(player, calculateLastWonGameRound(gameRounds, player));
   });
 
-  const gameWithHighestScore = getGameWithHighestScore(gameRounds);
+  const gameWithHighestScore = getGameRoundWithHighestScore(gameRounds);
 
   return (
     <Grid container spacing={2}>
