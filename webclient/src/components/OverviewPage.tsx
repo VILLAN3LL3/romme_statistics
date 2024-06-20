@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 import MeetingRoomRoundedIcon from "@mui/icons-material/MeetingRoomRounded";
@@ -25,9 +25,9 @@ export default function OverviewPage() {
 
   const { mutate } = useMutation({
     mutationFn: postGame,
-    onSuccess: (game: string) => {
-      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(game.split("_")) });
-      navigate(game);
+    onSuccess: (gameId: string) => {
+      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
+      navigate(gameId);
     },
   });
 
@@ -43,18 +43,18 @@ export default function OverviewPage() {
     <>
       <Section title="Spiel wählen" Icon={MeetingRoomRoundedIcon}>
         <List>
-          {data.map((game) => (
-            <>
+          {data.map((gameId) => (
+            <Fragment key={gameId}>
               <Divider component="li" />
-              <ListItem key={game} divider={true}>
-                <ListItemButton onClick={() => navigate(game)}>
+              <ListItem key={gameId} divider={true}>
+                <ListItemButton onClick={() => navigate(gameId)}>
                   <ListItemIcon>
                     <RecentActorsRoundedIcon />
                   </ListItemIcon>
-                  <ListItemText primary={game.split("_").join(", ")} />
+                  <ListItemText primary={gameId.split("_").join(", ")} />
                 </ListItemButton>
               </ListItem>
-            </>
+            </Fragment>
           ))}
           <ListItem key="new" divider={true}>
             <ListItemButton onClick={() => setIsDialogOpen(true)}>

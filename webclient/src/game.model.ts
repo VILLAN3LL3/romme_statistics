@@ -1,25 +1,27 @@
 export interface GameDataDto {
-  games: Game[];
+  gameId: string;
+  gameRounds: GameRound[];
   players: string[];
 }
 
 export interface PostGameDataDto {
-  newGame: Game;
-  players: string[];
+  newGameRound: GameRound;
+  gameId: string;
 }
 
-export interface Game {
+export interface GameRound {
   score: number;
   winner: string;
   vonHand: boolean;
   date: string;
 }
 
-export interface GameVM extends Game {
+export interface GameRoundVM extends GameRound {
   totalScore: number;
 }
 
 export interface GameDataVM {
-  games: GameVM[];
+  gameId: string;
+  gameRounds: GameRoundVM[];
   players: string[];
 }

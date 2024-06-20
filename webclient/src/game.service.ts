@@ -1,19 +1,19 @@
-import { Game, GameDataDto, GameVM, PostGameDataDto } from "./game.model";
+import { GameDataDto, GameDataVM, GameRound, GameRoundVM, PostGameDataDto } from "./game.model";
 
 const baseUrl = "http://localhost:3000/games";
 
-function createPlayersRequestParameter(players: string[]) {
+function createGameId(players: string[]) {
   return players.join("_");
 }
 
-const mapGameToGameVm = (game: Game): GameVM => {
+const mapGameToGameVm = (game: GameRound): GameRoundVM => {
   return {
     ...game,
     totalScore: game.vonHand ? game.score * 2 : game.score,
   };
 };
 
-export async function loadGames(): Promise<string[]> {
+export async function loadExistingGameIds(): Promise<string[]> {
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
   const requestOptions = {
@@ -27,7 +27,7 @@ export async function loadGames(): Promise<string[]> {
   return response.json();
 }
 
-export async function loadGameDto(players: string[]): Promise<{ players: string[]; games: GameVM[] }> {
+export async function loadGameDto(gameId: string): Promise<GameDataVM> {
   const headers = new Headers();
   headers.set("Content-Type", "application/json");
   const requestOptions = {
@@ -35,24 +35,25 @@ export async function loadGameDto(players: string[]): Promise<{ players: string[
     headers: headers,
   };
 
-  const response = await fetch(`${baseUrl}/${createPlayersRequestParameter(players)}`, requestOptions);
+  const response = await fetch(`${baseUrl}/${gameId}`, requestOptions);
   if (!response.ok) {
     throw new Error(response.statusText);
   }
   const dto: GameDataDto = await response.json();
   return {
     players: dto.players,
-    games: dto.games.map((g) => mapGameToGameVm(g)),
+    gameId,
+    gameRounds: dto.gameRounds.map((g) => mapGameToGameVm(g)),
   };
 }
 
-export async function postGameData(gameData: PostGameDataDto): Promise<string> {
-  const response = await fetch(`${baseUrl}/${createPlayersRequestParameter(gameData.players)}`, {
+export async function postGameData(dto: PostGameDataDto): Promise<string> {
+  const response = await fetch(`${baseUrl}/${dto.gameId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(gameData.newGame),
+    body: JSON.stringify(dto.newGameRound),
   });
 
   if (!response.ok) {
@@ -74,5 +75,5 @@ export async function postGame(players: string[]): Promise<string> {
     throw new Error(response.statusText);
   }
 
-  return createPlayersRequestParameter(players);
+  return createGameId(players);
 }

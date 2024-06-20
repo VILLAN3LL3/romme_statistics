@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
 
 import { Container, createTheme, ThemeProvider } from "@mui/material";
 import { deDE } from "@mui/material/locale";
@@ -28,14 +28,22 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: "games",
+          path: "/",
+          element: <Navigate to="games" replace={true} />,
+        },
+        {
+          path: "/games",
           loader: gameLoader(queryClient),
           element: <OverviewPage />,
         },
         {
-          path: "games/:players",
+          path: "/games/:gameId",
           loader: gameDataLoader(queryClient),
           element: <GamePage />,
+        },
+        {
+          path: "*",
+          element: <Navigate to="games" replace={true} />,
         },
       ],
     },

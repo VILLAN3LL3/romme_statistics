@@ -35,8 +35,8 @@ app.get('/games/:filename', (req, res) => {
                 return res.status(422).send("The number of players exceeds the permitted value of 2");
             }
 
-            const games = JSON.parse(data);
-            res.send({ games, players });
+            const gameRounds = JSON.parse(data);
+            res.send({ gameRounds, players });
         });
     });
 });

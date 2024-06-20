@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
-import { Alert, Stack } from "@mui/material";
+import { Alert, Button, Stack } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { Game } from "../game.model";
+import { GameRound } from "../game.model";
 import { gameDataLoader, GameDataQuery, getGameDataQueryKey } from "../game.query";
 import { postGameData } from "../game.service";
 import GameDataSavedSnackbar from "./GameDataSavedSnackbar";
@@ -21,27 +22,28 @@ export default function GamePage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameDataLoader>>>;
   const params = useParams();
   const {
-    data: { players, games },
+    data: { players, gameRounds, gameId },
     isLoading,
     error,
   } = useQuery({
-    ...GameDataQuery(params.players?.split("_") ?? []),
+    ...GameDataQuery(params.gameId ?? ""),
     initialData,
   });
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { mutate } = useMutation({
     mutationFn: postGameData,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(players) });
+      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
       setIsSnackbarOpen(true);
     },
   });
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
-  function handleGameSave(newGame: Game) {
-    mutate({ newGame, players });
+  function handleGameSave(newGameRound: GameRound) {
+    mutate({ newGameRound, gameId });
   }
 
   if (isLoading) {
@@ -53,20 +55,25 @@ export default function GamePage() {
   }
 
   return (
-    <Stack spacing={5}>
+    <>
       <GameDataSavedSnackbar open={isSnackbarOpen} onClose={() => setIsSnackbarOpen(false)} />
-      <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
-        <Alert severity="info" sx={{ marginBottom: 4 }}>
-          {players[games.length % players.length]} muss Karten geben ...
-        </Alert>
-        <SpielForm onGameSave={handleGameSave} loading={isLoading} players={players} />
-      </Section>
-      <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
-        <Statistics games={games} players={players} />
-      </Section>
-      <Section title="Spieltabelle" Icon={ListAltRounded}>
-        <GameTable games={games} players={players} />
-      </Section>
-    </Stack>
+      <Stack spacing={5}>
+        <Button size="large" variant="outlined" onClick={() => navigate("/")} startIcon={<ArrowBackRoundedIcon />}>
+          Zur Übersicht
+        </Button>
+        <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
+          <Alert severity="info" sx={{ marginBottom: 4 }}>
+            {players[gameRounds.length % players.length]} muss Karten geben ...
+          </Alert>
+          <SpielForm onGameSave={handleGameSave} loading={isLoading} players={players} />
+        </Section>
+        <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
+          <Statistics gameRounds={gameRounds} players={players} />
+        </Section>
+        <Section title="Spieltabelle" Icon={ListAltRounded}>
+          <GameTable gameRounds={gameRounds} players={players} />
+        </Section>
+      </Stack>
+    </>
   );
 }

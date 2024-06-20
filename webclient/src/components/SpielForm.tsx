@@ -1,13 +1,23 @@
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { de } from 'yup-locales';
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { de } from "yup-locales";
 
 import {
-  Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Radio, RadioGroup, Stack, TextField
-} from '@mui/material';
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Stack,
+  TextField,
+} from "@mui/material";
 
-import { Game } from '../game.model';
-import { formatDate } from '../utils';
+import { GameRound } from "../game.model";
+import { formatDate } from "../utils";
 
 yup.setLocale(de);
 
@@ -21,7 +31,7 @@ export default function SpielForm({
   loading,
   players,
 }: Readonly<{
-  onGameSave: (game: Game) => void;
+  onGameSave: (game: GameRound) => void;
   loading: boolean;
   players: string[];
 }>) {

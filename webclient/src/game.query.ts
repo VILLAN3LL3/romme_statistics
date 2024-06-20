@@ -3,27 +3,27 @@ import { Params } from "react-router-dom";
 import { QueryClient } from "@tanstack/react-query";
 
 import { GameDataVM } from "./game.model";
-import { loadGameDto, loadGames } from "./game.service";
+import { loadExistingGameIds, loadGameDto } from "./game.service";
 
-export function getGameDataQueryKey(players: string[]) {
-  return ["game-data", ...players];
+export function getGameDataQueryKey(gameId: string) {
+  return ["game-data", gameId];
 }
 
-export const GameDataQuery = (players: string[]) => ({
-  queryKey: getGameDataQueryKey(players),
-  queryFn: async () => loadGameDto(players),
+export const GameDataQuery = (gameId: string) => ({
+  queryKey: getGameDataQueryKey(gameId),
+  queryFn: async () => loadGameDto(gameId),
 });
 
 export const gameDataLoader =
   (queryClient: QueryClient) =>
   async ({ params }: { params: Params<string> }): Promise<GameDataVM> => {
-    const query = GameDataQuery(params.players?.split("_") ?? []);
+    const query = GameDataQuery(params.gameId ?? "");
     return queryClient.ensureQueryData(query);
   };
 
 export const GameQuery = () => ({
   queryKey: ["games"],
-  queryFn: async () => loadGames(),
+  queryFn: async () => loadExistingGameIds(),
 });
 
 export const gameLoader = (queryClient: QueryClient) => async (): Promise<string[]> => {

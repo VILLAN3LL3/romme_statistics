@@ -1,7 +1,9 @@
+import { Fragment } from "react/jsx-runtime";
+
 import BackHandOutlinedIcon from "@mui/icons-material/BackHandOutlined";
 import { TableCell, TableRow } from "@mui/material";
 
-import { GameVM } from "../game.model";
+import { GameRoundVM } from "../game.model";
 import { calculateLostScore, toGermanDateString } from "../utils";
 
 export default function GameTableRow({
@@ -10,15 +12,13 @@ export default function GameTableRow({
   games,
   players,
 }: Readonly<{
-  game: GameVM;
+  game: GameRoundVM;
   index: number;
-  games: GameVM[];
+  games: GameRoundVM[];
   players: string[];
 }>) {
   const lostScoreByPlayer = new Map<string, number>();
-  players.forEach((player) =>
-    lostScoreByPlayer.set(player, calculateLostScore(games, index, player))
-  );
+  players.forEach((player) => lostScoreByPlayer.set(player, calculateLostScore(games, index, player)));
 
   return (
     <TableRow>
@@ -29,7 +29,7 @@ export default function GameTableRow({
       {players.map((player) => {
         const isWinner = game.winner === player;
         return (
-          <>
+          <Fragment key={player}>
             <TableCell align="right">
               {isWinner ? "-" : game.totalScore}
               {isWinner && game.vonHand && (
@@ -40,12 +40,11 @@ export default function GameTableRow({
               )}
             </TableCell>
             <TableCell align="right">{lostScoreByPlayer.get(player)}</TableCell>
-          </>
+          </Fragment>
         );
       })}
       <TableCell align="right">
-        {lostScoreByPlayer.values().next().value -
-          lostScoreByPlayer.values().next().value}
+        {lostScoreByPlayer.values().next().value - lostScoreByPlayer.values().next().value}
       </TableCell>
     </TableRow>
   );
