@@ -6,7 +6,7 @@ import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import ListAltRounded from "@mui/icons-material/ListAltRounded";
 import SportsKabaddiRoundedIcon from "@mui/icons-material/SportsKabaddiRounded";
 import { Alert, Button, Stack } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import GameDataSavedSnackbar from "../components/GameDataSavedSnackbar";
 import GameTable from "../components/GameTable";
@@ -14,9 +14,8 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import Section from "../components/Section";
 import SpielForm from "../components/SpielForm";
 import Statistics from "../components/Statistics";
+import { gameDataLoader, GameDataQuery, useGameDataMutation } from "../game-data.query";
 import { GameRound } from "../game.model";
-import { gameDataLoader, GameDataQuery, getGameDataQueryKey } from "../game.query";
-import { postGameData } from "../game.service";
 
 export default function GamePage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameDataLoader>>>;
@@ -29,16 +28,9 @@ export default function GamePage() {
     ...GameDataQuery(params.gameId ?? ""),
     initialData,
   });
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { mutate } = useMutation({
-    mutationFn: postGameData,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
-      setIsSnackbarOpen(true);
-    },
-  });
+  const { mutate } = useGameDataMutation(gameId, () => setIsSnackbarOpen(true));
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 

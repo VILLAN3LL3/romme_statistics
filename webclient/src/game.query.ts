@@ -1,25 +1,9 @@
-import { Params } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { GameDataVM } from "./game.model";
-import { loadExistingGameIds, loadGameDto } from "./game.service";
-
-export function getGameDataQueryKey(gameId: string) {
-  return ["game-data", gameId];
-}
-
-export const GameDataQuery = (gameId: string) => ({
-  queryKey: getGameDataQueryKey(gameId),
-  queryFn: async () => loadGameDto(gameId),
-});
-
-export const gameDataLoader =
-  (queryClient: QueryClient) =>
-  async ({ params }: { params: Params<string> }): Promise<GameDataVM> => {
-    const query = GameDataQuery(params.gameId ?? "");
-    return queryClient.ensureQueryData(query);
-  };
+import { getGameDataQueryKey } from "./game-data.query";
+import { loadExistingGameIds, postGame } from "./game.service";
 
 export const GameQuery = () => ({
   queryKey: ["games"],
@@ -30,3 +14,16 @@ export const gameLoader = (queryClient: QueryClient) => async (): Promise<string
   const query = GameQuery();
   return queryClient.ensureQueryData(query);
 };
+
+export function useGameMutation() {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const { mutate } = useMutation({
+    mutationFn: postGame,
+    onSuccess: (gameId: string) => {
+      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
+      navigate(gameId);
+    },
+  });
+  return { mutate };
+}

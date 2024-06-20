@@ -5,13 +5,12 @@ import MeetingRoomRoundedIcon from "@mui/icons-material/MeetingRoomRounded";
 import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
 import RecentActorsRoundedIcon from "@mui/icons-material/RecentActorsRounded";
 import { Alert, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import LoadingIndicator from "../components/LoadingIndicator";
 import NewGameDialog from "../components/NewGameDialog";
 import Section from "../components/Section";
-import { gameLoader, GameQuery, getGameDataQueryKey } from "../game.query";
-import { postGame } from "../game.service";
+import { gameLoader, GameQuery, useGameMutation } from "../game.query";
 
 export default function OverviewPage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameLoader>>>;
@@ -21,15 +20,8 @@ export default function OverviewPage() {
   });
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
-    mutationFn: postGame,
-    onSuccess: (gameId: string) => {
-      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
-      navigate(gameId);
-    },
-  });
+  const { mutate } = useGameMutation();
 
   if (isLoading) {
     return <LoadingIndicator />;
