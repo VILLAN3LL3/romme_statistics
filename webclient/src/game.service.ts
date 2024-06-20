@@ -61,8 +61,8 @@ export async function postGameData(gameData: PostGameDataDto): Promise<string> {
   return response.text();
 }
 
-export async function postGame(players: string[]): Promise<void> {
-  const response = await fetch(`${baseUrl}/${createPlayersRequestParameter(players)}`, {
+export async function postGame(players: string[]): Promise<string> {
+  const response = await fetch(baseUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,4 +73,6 @@ export async function postGame(players: string[]): Promise<void> {
   if (!response.ok) {
     throw new Error(response.statusText);
   }
+
+  return createPlayersRequestParameter(players);
 }

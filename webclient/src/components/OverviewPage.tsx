@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 import MeetingRoomRoundedIcon from "@mui/icons-material/MeetingRoomRounded";
+import PersonAddRoundedIcon from "@mui/icons-material/PersonAddRounded";
 import RecentActorsRoundedIcon from "@mui/icons-material/RecentActorsRounded";
-import { Alert, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
+import { Alert, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { gameLoader, GameQuery } from "../game.query";
+import { gameLoader, GameQuery, getGameDataQueryKey } from "../game.query";
+import { postGame } from "../game.service";
 import LoadingIndicator from "./LoadingIndicator";
+import NewGameDialog from "./NewGameDialog";
 import Section from "./Section";
 
 export default function OverviewPage() {
@@ -16,6 +20,16 @@ export default function OverviewPage() {
     initialData,
   });
   const navigate = useNavigate();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: postGame,
+    onSuccess: (game: string) => {
+      queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(game.split("_")) });
+      navigate(game);
+    },
+  });
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -26,19 +40,33 @@ export default function OverviewPage() {
   }
 
   return (
-    <Section title="Verfügbare Spiele" Icon={MeetingRoomRoundedIcon}>
-      <List>
-        {data.map((game) => (
-          <ListItem key={game}>
-            <ListItemButton onClick={() => navigate(game)}>
+    <>
+      <Section title="Spiel wählen" Icon={MeetingRoomRoundedIcon}>
+        <List>
+          {data.map((game) => (
+            <>
+              <Divider component="li" />
+              <ListItem key={game} divider={true}>
+                <ListItemButton onClick={() => navigate(game)}>
+                  <ListItemIcon>
+                    <RecentActorsRoundedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={game.split("_").join(", ")} />
+                </ListItemButton>
+              </ListItem>
+            </>
+          ))}
+          <ListItem key="new" divider={true}>
+            <ListItemButton onClick={() => setIsDialogOpen(true)}>
               <ListItemIcon>
-                <RecentActorsRoundedIcon />
+                <PersonAddRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary={game.split("_").join(", ")} />
+              <ListItemText primary="Neues Spiel beginnen" />
             </ListItemButton>
           </ListItem>
-        ))}
-      </List>
-    </Section>
+        </List>
+      </Section>
+      <NewGameDialog open={isDialogOpen} onClose={(players) => (players.length > 0 ? mutate(players) : {})} />
+    </>
   );
 }
