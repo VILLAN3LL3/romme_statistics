@@ -33,7 +33,7 @@ export default function GamePage() {
   });
   const navigate = useNavigate();
 
-  const { mutate } = useGameDataMutation(gameId, () => setIsSnackbarOpen(true));
+  const { mutate, error: mutationError } = useGameDataMutation(gameId, () => setIsSnackbarOpen(true));
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
@@ -45,8 +45,8 @@ export default function GamePage() {
     return <LoadingIndicator />;
   }
 
-  if (error) {
-    return <Alert severity="error">{error.message}</Alert>;
+  if (error || mutationError) {
+    return <Alert severity="error">{error?.message ?? mutationError?.message}</Alert>;
   }
 
   return (

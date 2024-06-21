@@ -19,12 +19,12 @@ export const gameLoader = (queryClient: QueryClient) => async (): Promise<string
 export function useGameMutation() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { mutate } = useMutation({
+  const { mutate, error } = useMutation({
     mutationFn: postGame,
     onSuccess: (gameId: string) => {
       queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
       navigate(gameId);
     },
   });
-  return { mutate };
+  return { mutate, error };
 }

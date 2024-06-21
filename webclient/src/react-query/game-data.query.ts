@@ -23,12 +23,12 @@ export const gameDataLoader =
 
 export function useGameDataMutation(gameId: string, onSuccess: () => void) {
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, error } = useMutation({
     mutationFn: postGameData,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: getGameDataQueryKey(gameId) });
       onSuccess();
     },
   });
-  return { mutate };
+  return { mutate, error };
 }

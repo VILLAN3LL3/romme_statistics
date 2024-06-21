@@ -24,7 +24,7 @@ export default function OverviewPage() {
   const { t } = useTranslation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const { mutate } = useGameMutation();
+  const { mutate, error: mutationError } = useGameMutation();
 
   function handleDialogClose(players: string[]) {
     setIsDialogOpen(false);
@@ -37,8 +37,8 @@ export default function OverviewPage() {
     return <LoadingIndicator />;
   }
 
-  if (error) {
-    return <Alert severity="error">{error.message}</Alert>;
+  if (error || mutationError) {
+    return <Alert severity="error">{error?.message ?? mutationError?.message}</Alert>;
   }
 
   return (
