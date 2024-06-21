@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
+
 import { Alert } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { GameRoundVM } from "../game.model";
-import { toGermanDateString } from "../utils/date.utils";
+import { toLocalizedDateString } from "../utils/date.utils";
 import {
   calculateLastWonGameRound,
   getGameRoundWithHighestScore,
@@ -20,8 +22,9 @@ export default function Statistics({
   gameRounds,
   players,
 }: Readonly<{ gameRounds: GameRoundVM[]; players: string[] }>) {
+  const { t } = useTranslation();
   if (gameRounds.length === 0) {
-    return <Alert severity="info">Keine Daten aus vergangenen Spielen vorhanden. Startet euer erstes Spiel!</Alert>;
+    return <Alert severity="info">{t("NO_GAME_DATA_AVAILABLE")}</Alert>;
   }
 
   const wonGamesCountByPlayer = new Map<string, number>();
@@ -53,65 +56,65 @@ export default function Statistics({
 
   return (
     <Grid container spacing={2}>
-      <GameStatisticRow title="Anzahl Spiele" value={gameRounds.length} />
+      <GameStatisticRow title={t("NUMBER_OF_GAME_ROUNDS")} value={gameRounds.length} />
       <GameStatisticRow
-        title="Höchster Gewinn"
-        value={`${gameWithHighestScore.totalScore} (gewonnen von ${
+        title={t("HIGHEST_PROFIT")}
+        value={`${gameWithHighestScore.totalScore} (${t("WON_BY")} ${
           gameWithHighestScore.winner
-        } am ${toGermanDateString(gameWithHighestScore.date)})`}
+        } ${t("ON")} ${toLocalizedDateString(gameWithHighestScore.date)})`}
       />
       <Grid xs={12}>
         <hr />
       </Grid>
       <PlayerStatisticHeader players={players} />
       <PlayerStatisticRow
-        title="Summe Minuspunkte"
+        title={t("TOTAL_MINUS_POINTS")}
         valueMap={scoreByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer < val)}
       />
       <PlayerStatisticRow
-        title="Anzahl gewonnener Spiele"
+        title={t("NUMBER_OF_WON_GAME_ROUNDS")}
         valueMap={wonGamesCountByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer > val)}
       />
       <PlayerStatisticRow
-        title="Anteil gewonnener Spiele"
+        title={t("PERCENTAGE_OF_GAME_ROUNDS_WON")}
         valueMap={wonGamesPercentageByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer > val)}
         valueFn={(value) => `${value} %`}
       />
       <PlayerStatisticRow
-        title="Längster Winning Streak"
+        title={t("LONGEST_WINNING_STREAK")}
         valueMap={longestWinningStreakByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer > val)}
       />
       <PlayerStatisticRow
-        title="Anzahl von Hand gewonnener Spiele"
+        title={t("NUMBER_OF_IN_ONE_TURN_WON_GAME_ROUNDS")}
         valueMap={vonHandWonGamesCountByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer > val)}
       />
       <PlayerStatisticRow
-        title="Längster von Hand Winning Streak"
+        title={t("LONGEST_ONE_TURN_WINNING_STREAK")}
         valueMap={longestVonHandWinningStreakByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer > val)}
       />
       <PlayerStatisticRow
-        title="Durchschnittliche Minuspunkte pro verlorenem Spiel"
+        title={t("AVERAGE_MINUS_POINTS")}
         valueMap={averageScoreByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer < val)}
         valueFn={(value) => value.toFixed(0)}
       />
       <PlayerStatisticRow
-        title="Letzter Sieg vor wieviel Spielen?"
+        title={t("LAST_WIN_HOW_MANY_ROUNDS_AGO")}
         valueMap={lastWonByPlayer}
         leaderFn={(valuePlayer, valueOthers) => valueOthers.every((val) => valuePlayer < val)}
-        valueFn={(value) => (value === 0 ? "Letztes Spiel gewonnen!" : value)}
+        valueFn={(value) => (value === 0 ? t("LAST_ROUND_WON") : value)}
       />
       <Grid xs={12}>
         <hr />
       </Grid>
       <Grid xs={12}>
-        <DiffChart games={gameRounds} players={players} />
+        <DiffChart gameRounds={gameRounds} players={players} />
       </Grid>
     </Grid>
   );

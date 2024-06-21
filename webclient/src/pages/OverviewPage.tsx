@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
 import MeetingRoomRoundedIcon from "@mui/icons-material/MeetingRoomRounded";
@@ -19,6 +20,7 @@ export default function OverviewPage() {
     initialData,
   });
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const { mutate } = useGameMutation();
@@ -33,7 +35,7 @@ export default function OverviewPage() {
 
   return (
     <>
-      <Section title="Spiel wählen" Icon={MeetingRoomRoundedIcon}>
+      <Section title={t("SELECT_GAME")} Icon={MeetingRoomRoundedIcon}>
         <List>
           {data.map((gameId) => (
             <Fragment key={gameId}>
@@ -53,7 +55,7 @@ export default function OverviewPage() {
               <ListItemIcon>
                 <PersonAddRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="Neues Spiel beginnen" />
+              <ListItemText primary={t("START_NEW_GAME")} />
             </ListItemButton>
           </ListItem>
         </List>

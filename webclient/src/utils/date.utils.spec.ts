@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { formatDate, toGermanDateString } from "./date.utils";
+import { formatDate, toLocalizedDateString } from "./date.utils";
 
 describe("date.utils", () => {
   describe("formatDate", () => {
@@ -32,13 +32,13 @@ describe("date.utils", () => {
   describe("toGermanDateString", () => {
     test("should format date correctly in German format", () => {
       const date = "2022-01-01";
-      const result = toGermanDateString(date);
+      const result = toLocalizedDateString(date);
       expect(result).toBe("1.1.2022");
     });
 
     test("should handle invalid date string", () => {
       const date = "invalid-date";
-      const result = toGermanDateString(date);
+      const result = toLocalizedDateString(date);
       expect(result).toBe("Invalid Date");
     });
   });

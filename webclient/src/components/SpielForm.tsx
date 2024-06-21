@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import { de } from "yup-locales";
 
@@ -35,6 +36,7 @@ export default function SpielForm({
   loading: boolean;
   players: string[];
 }>) {
+  const { t } = useTranslation();
   const formik = useFormik({
     initialValues: {
       score: 0,
@@ -56,7 +58,7 @@ export default function SpielForm({
       <Stack spacing={2}>
         <TextField
           required
-          label="Minuspunkte"
+          label={t("MINUS_POINTS")}
           name="score"
           value={formik.values.score}
           onChange={formik.handleChange}
@@ -68,7 +70,7 @@ export default function SpielForm({
           onFocus={(evt) => evt.target.select()}
         />
         <FormControl required error={formik.touched.winner && Boolean(formik.errors.score)}>
-          <FormLabel sx={{ textAlign: "left" }}>Gewinner</FormLabel>
+          <FormLabel sx={{ textAlign: "left" }}>{t("WINNER")}</FormLabel>
           <RadioGroup row name="winner" onChange={formik.handleChange} onBlur={formik.handleBlur}>
             {players.map((player) => (
               <FormControlLabel key={player} value={player} control={<Radio />} label={player} />
@@ -79,11 +81,11 @@ export default function SpielForm({
         <FormGroup>
           <FormControlLabel
             control={<Checkbox name="vonHand" onChange={formik.handleChange} onBlur={formik.handleBlur} />}
-            label="von Hand?"
+            label={t("WITHIN_ONE_TURN") + "?"}
           />
         </FormGroup>
         <Button variant="contained" type="submit" disabled={loading}>
-          Speichern
+          {t("SAVE")}
         </Button>
       </Stack>
     </form>

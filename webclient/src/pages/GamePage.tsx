@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
@@ -20,6 +21,7 @@ import { GameRound } from "../game.model";
 export default function GamePage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameDataLoader>>>;
   const params = useParams();
+  const { t } = useTranslation();
   const {
     data: { players, gameRounds, gameId },
     isLoading,
@@ -51,18 +53,18 @@ export default function GamePage() {
       <GameDataSavedSnackbar open={isSnackbarOpen} onClose={() => setIsSnackbarOpen(false)} />
       <Stack spacing={5}>
         <Button size="large" variant="outlined" onClick={() => navigate("/")} startIcon={<ArrowBackRoundedIcon />}>
-          Zur Übersicht
+          {t("TO_THE_GAMES_OVERVIEW")}
         </Button>
-        <Section title="Aktuelles Spiel" Icon={SportsKabaddiRoundedIcon}>
+        <Section title={t("CURRENT_ROUND")} Icon={SportsKabaddiRoundedIcon}>
           <Alert severity="info" sx={{ marginBottom: 4 }}>
-            {players[gameRounds.length % players.length]} muss Karten geben ...
+            {players[gameRounds.length % players.length]} {t("MUST_DEAL_CARDS")} ...
           </Alert>
           <SpielForm onGameSave={handleGameSave} loading={isLoading} players={players} />
         </Section>
-        <Section title="Statistik" Icon={AutoGraphRoundedIcon}>
+        <Section title={t("STATISTICS")} Icon={AutoGraphRoundedIcon}>
           <Statistics gameRounds={gameRounds} players={players} />
         </Section>
-        <Section title="Spieltabelle" Icon={ListAltRounded}>
+        <Section title={t("GAME_TABLE")} Icon={ListAltRounded}>
           <GameTable gameRounds={gameRounds} players={players} />
         </Section>
       </Stack>

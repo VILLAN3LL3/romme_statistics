@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import {
   Button,
   Dialog,
@@ -15,6 +17,7 @@ export interface NewGameDialogProps {
 }
 
 export default function NewGameDialog({ open, onClose }: Readonly<NewGameDialogProps>) {
+  const { t } = useTranslation();
   return (
     <Dialog
       onClose={() => onClose([])}
@@ -29,12 +32,10 @@ export default function NewGameDialog({ open, onClose }: Readonly<NewGameDialogP
         },
       }}
     >
-      <DialogTitle>Neues Spiel beginnen</DialogTitle>
+      <DialogTitle>{t("START_NEW_GAME")}</DialogTitle>
       <DialogContent>
         <Stack spacing={2}>
-          <DialogContentText>
-            Um ein neues Spiel zu beginnen, gib hier die Vornamen der beiden Spieler*innen ein.
-          </DialogContentText>
+          <DialogContentText>{t("START_NEW_GAME_DESCRIPTION")}</DialogContentText>
           <TextField
             autoFocus
             required
@@ -48,9 +49,9 @@ export default function NewGameDialog({ open, onClose }: Readonly<NewGameDialogP
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => onClose([])}>Abbrechen</Button>
+        <Button onClick={() => onClose([])}>{t("CANCEL")}</Button>
         <Button variant="contained" type="submit">
-          Los geht's!
+          {t("LETS_GO")}
         </Button>
       </DialogActions>
     </Dialog>

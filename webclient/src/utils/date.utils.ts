@@ -1,3 +1,5 @@
+import i18n from "i18next";
+
 export function formatDate(date: Date) {
   const d = new Date(date);
   let month = "" + (d.getMonth() + 1);
@@ -10,6 +12,6 @@ export function formatDate(date: Date) {
   return [year, month, day].join("-");
 }
 
-export function toGermanDateString(date: string): string {
-  return new Date(date).toLocaleDateString("de-DE");
+export function toLocalizedDateString(date: string): string {
+  return new Date(date).toLocaleDateString(i18n.language === "en" ? "en-US" : "de-DE");
 }

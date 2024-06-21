@@ -1,10 +1,12 @@
 import "./App.css";
 
+import i18n from "i18next";
 import { lazy, Suspense } from "react";
+import { useTranslation } from "react-i18next";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
 
 import { Container, createTheme, ThemeProvider } from "@mui/material";
-import { deDE } from "@mui/material/locale";
+import { deDE, enUS } from "@mui/material/locale";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { gameDataLoader } from "../game-data.query";
@@ -15,8 +17,10 @@ const GamePage = lazy(() => import("../pages/GamePage"));
 const ErrorPage = lazy(() => import("../pages/ErrorPage"));
 
 function App() {
-  const theme = { ...createTheme(), deDE };
+  const locale = i18n.language === "en" ? enUS : deDE;
+  const theme = { ...createTheme(), locale };
   const queryClient = new QueryClient();
+  const { t } = useTranslation();
 
   const router = createBrowserRouter([
     {
@@ -54,7 +58,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Suspense fallback={<p>Lädt...</p>}>
+      <Suspense fallback={<p>{t("LOADING")}...</p>}>
         <RouterProvider router={router} />
       </Suspense>
     </ThemeProvider>
