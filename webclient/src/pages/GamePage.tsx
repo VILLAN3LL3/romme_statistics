@@ -15,8 +15,8 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import Section from "../components/Section";
 import SpielForm from "../components/SpielForm";
 import Statistics from "../components/Statistics";
-import { gameDataLoader, GameDataQuery, useGameDataMutation } from "../game-data.query";
 import { GameRound } from "../game.model";
+import { gameDataLoader, GameDataQuery, useGameDataMutation } from "../react-query/game-data.query";
 
 export default function GamePage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameDataLoader>>>;

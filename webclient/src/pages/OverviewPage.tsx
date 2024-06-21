@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingIndicator from "../components/LoadingIndicator";
 import NewGameDialog from "../components/NewGameDialog";
 import Section from "../components/Section";
-import { gameLoader, GameQuery, useGameMutation } from "../game.query";
+import { gameLoader, GameQuery, useGameMutation } from "../react-query/game.query";
 
 export default function OverviewPage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameLoader>>>;
