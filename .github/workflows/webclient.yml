@@ -8,6 +8,10 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    
+defaults:
+  run:
+    working-directory: webclient
 
 jobs:
   build:
@@ -26,14 +30,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        working-directory: ./webclient
-    - name: Install dependencies
-      run: npm ci
-      working-directory: ./webclient
-    - name: Build
-      run: npm run build --if-present
-      working-directory: ./webclient
-    - name: Test
-      run: npm test
-      working-directory: ./webclient
+        cache-dependency-path: webclient/package-lock.json
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
       
