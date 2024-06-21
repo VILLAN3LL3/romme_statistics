@@ -1,2 +1,1 @@
-- Beim reset des Formulars resetten die Radio Buttons nicht richtig
 - Neue Statistik: Letzter Gewinn von Hand vor x Spielen

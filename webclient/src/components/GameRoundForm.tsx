@@ -81,7 +81,13 @@ export default function GameRoundForm({
           <FormLabel sx={{ textAlign: "left" }}>{t("WINNER")}</FormLabel>
           <RadioGroup row name="winner" onChange={formik.handleChange} onBlur={formik.handleBlur}>
             {players.map((player) => (
-              <FormControlLabel key={player} value={player} control={<Radio />} label={player} />
+              <FormControlLabel
+                key={player}
+                value={player}
+                control={<Radio />}
+                label={player}
+                checked={formik.values.winner === player}
+              />
             ))}
           </RadioGroup>
           <FormHelperText>{formik.touched.winner && formik.errors.winner}</FormHelperText>
