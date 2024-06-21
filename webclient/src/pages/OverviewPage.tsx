@@ -8,10 +8,11 @@ import RecentActorsRoundedIcon from "@mui/icons-material/RecentActorsRounded";
 import { Alert, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 
+import { gameLoader, GameQuery, useGameMutation } from "@romme/query";
+
 import LoadingIndicator from "../components/LoadingIndicator";
 import NewGameDialog from "../components/NewGameDialog";
 import Section from "../components/Section";
-import { gameLoader, GameQuery, useGameMutation } from "../react-query/game.query";
 
 export default function OverviewPage() {
   const initialData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof gameLoader>>>;
@@ -24,6 +25,13 @@ export default function OverviewPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const { mutate } = useGameMutation();
+
+  function handleDialogClose(players: string[]) {
+    setIsDialogOpen(false);
+    if (players.length > 0) {
+      mutate(players);
+    }
+  }
 
   if (isLoading) {
     return <LoadingIndicator />;
@@ -60,7 +68,7 @@ export default function OverviewPage() {
           </ListItem>
         </List>
       </Section>
-      <NewGameDialog open={isDialogOpen} onClose={(players) => (players.length > 0 ? mutate(players) : {})} />
+      <NewGameDialog open={isDialogOpen} onClose={handleDialogClose} />
     </>
   );
 }

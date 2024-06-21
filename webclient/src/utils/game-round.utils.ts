@@ -1,4 +1,4 @@
-import { GameRoundVM } from "../game.model";
+import { GameRoundVM } from "@romme/model";
 
 export function sumUpScore(games: GameRoundVM[]): number {
   return games.reduce((total, game) => total + game.totalScore, 0);

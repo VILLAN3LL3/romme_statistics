@@ -9,8 +9,7 @@ import { Container, createTheme, ThemeProvider } from "@mui/material";
 import { deDE, enUS } from "@mui/material/locale";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { gameDataLoader } from "../react-query/game-data.query";
-import { gameLoader } from "../react-query/game.query";
+import { gameDataLoader, gameLoader } from "@romme/query";
 
 const OverviewPage = lazy(() => import("../pages/OverviewPage"));
 const GamePage = lazy(() => import("../pages/GamePage"));

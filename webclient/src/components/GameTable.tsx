@@ -3,7 +3,8 @@ import { Fragment } from "react/jsx-runtime";
 
 import { Alert, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
-import { GameRoundVM } from "../game.model";
+import { GameRoundVM } from "@romme/model";
+
 import GameTableRow from "./GameTableRow";
 
 export default function GameTable({ gameRounds, players }: Readonly<{ gameRounds: GameRoundVM[]; players: string[] }>) {

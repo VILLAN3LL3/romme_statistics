@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { loadExistingGameIds, postGame } from "../game.service";
+import { loadExistingGameIds, postGame } from "@romme/service";
+
 import { getGameDataQueryKey } from "./game-data.query";
 
 export const GameQuery = () => ({

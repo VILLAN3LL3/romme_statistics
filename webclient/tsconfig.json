@@ -18,7 +18,14 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "paths": {
+      "@romme/utils": ["./src/utils/index.ts"],
+      "@romme/model": ["./src/game.model.ts"],
+      "@romme/service": ["./src/game.service.ts"],
+      "@romme/query": ["./src/react-query/index.ts"]
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

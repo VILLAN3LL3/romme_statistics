@@ -13,8 +13,8 @@ import { useTranslation } from "react-i18next";
 
 import { useTheme } from "@mui/material";
 
-import { GameRoundVM } from "../game.model";
-import { calculateLostScore } from "../utils/game-round.utils";
+import { GameRoundVM } from "@romme/model";
+import { calculateLostScore } from "@romme/utils";
 
 export default function DiffChart({ gameRounds, players }: Readonly<{ gameRounds: GameRoundVM[]; players: string[] }>) {
   const theme = useTheme();

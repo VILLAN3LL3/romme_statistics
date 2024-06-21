@@ -3,16 +3,17 @@ import { useTranslation } from "react-i18next";
 import { Alert } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { GameRoundVM } from "../game.model";
-import { toLocalizedDateString } from "../utils/date.utils";
+import { GameRoundVM } from "@romme/model";
 import {
   calculateLastWonGameRound,
+  calculatePercentage,
   getGameRoundWithHighestScore,
   longestVonHandWinningStreak,
   longestWinningStreak,
   sumUpScore,
-} from "../utils/game-round.utils";
-import { calculatePercentage } from "../utils/number.utils";
+  toLocalizedDateString,
+} from "@romme/utils";
+
 import DiffChart from "./DiffChart";
 import GameStatisticRow from "./GameStatisticRow";
 import PlayerStatisticHeader from "./PlayerStatisticHeader";

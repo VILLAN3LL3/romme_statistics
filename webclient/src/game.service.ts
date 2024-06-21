@@ -1,4 +1,4 @@
-import { GameDataDto, GameDataVM, GameRound, GameRoundVM, PostGameDataDto } from "./game.model";
+import { GameDataDto, GameDataVM, GameRound, GameRoundVM, PostGameDataDto } from "@romme/model";
 
 const baseUrl = "http://localhost:3000/games";
 

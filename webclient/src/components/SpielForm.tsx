@@ -17,8 +17,8 @@ import {
   TextField,
 } from "@mui/material";
 
-import { GameRound } from "../game.model";
-import { formatDate } from "../utils/date.utils";
+import { GameRound } from "@romme/model";
+import { formatDate } from "@romme/utils";
 
 yup.setLocale(de);
 

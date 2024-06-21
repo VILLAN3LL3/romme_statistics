@@ -2,8 +2,8 @@ import { Params } from "react-router-dom";
 
 import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { GameDataVM } from "../game.model";
-import { loadGameDto, postGameData } from "../game.service";
+import { GameDataVM } from "@romme/model";
+import { loadGameDto, postGameData } from "@romme/service";
 
 export function getGameDataQueryKey(gameId: string) {
   return ["game-data", gameId];

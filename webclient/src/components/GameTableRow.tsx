@@ -3,9 +3,8 @@ import { Fragment } from "react/jsx-runtime";
 import BackHandOutlinedIcon from "@mui/icons-material/BackHandOutlined";
 import { TableCell, TableRow } from "@mui/material";
 
-import { GameRoundVM } from "../game.model";
-import { toLocalizedDateString } from "../utils/date.utils";
-import { calculateLostScore } from "../utils/game-round.utils";
+import { GameRoundVM } from "@romme/model";
+import { calculateLostScore, toLocalizedDateString } from "@romme/utils";
 
 export default function GameTableRow({
   gameRound,
