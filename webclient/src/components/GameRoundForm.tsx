@@ -77,7 +77,7 @@ export default function GameRoundForm({
           onFocus={(evt) => evt.target.select()}
           autoFocus
         />
-        <FormControl required error={formik.touched.winner && Boolean(formik.errors.score)}>
+        <FormControl required error={formik.touched.winner && Boolean(formik.errors.winner)}>
           <FormLabel sx={{ textAlign: "left" }}>{t("WINNER")}</FormLabel>
           <RadioGroup row name="winner" onChange={formik.handleChange} onBlur={formik.handleBlur}>
             {players.map((player) => (
