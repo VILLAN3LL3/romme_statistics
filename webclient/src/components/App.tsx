@@ -11,6 +11,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { gameDataLoader, gameLoader } from "@romme/query";
 
+import LoadingIndicator from "./LoadingIndicator";
+
 const OverviewPage = lazy(() => import("../pages/OverviewPage"));
 const GamePage = lazy(() => import("../pages/GamePage"));
 const ErrorPage = lazy(() => import("../pages/ErrorPage"));
@@ -57,7 +59,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Suspense fallback={<p>{t("LOADING")}...</p>}>
+      <Suspense fallback={<LoadingIndicator />}>
         <RouterProvider router={router} />
       </Suspense>
     </ThemeProvider>

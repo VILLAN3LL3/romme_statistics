@@ -19,6 +19,7 @@ export default function GameTableRow({
 }>) {
   const lostScoreByPlayer = new Map<string, number>();
   players.forEach((player) => lostScoreByPlayer.set(player, calculateLostScore(gameRounds, index, player)));
+  const values = Array.from(lostScoreByPlayer.values());
 
   return (
     <TableRow>
@@ -43,9 +44,7 @@ export default function GameTableRow({
           </Fragment>
         );
       })}
-      <TableCell align="right">
-        {lostScoreByPlayer.values().next().value - lostScoreByPlayer.values().next().value}
-      </TableCell>
+      <TableCell align="right">{values[0] - values[1]}</TableCell>
     </TableRow>
   );
 }

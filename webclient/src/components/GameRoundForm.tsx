@@ -22,31 +22,38 @@ import { formatDate } from "@romme/utils";
 
 yup.setLocale(de);
 
+interface FormValue {
+  score: number;
+  winner?: string;
+  vonHand: boolean;
+}
+
 const validationSchema = yup.object({
-  score: yup.number().integer().positive().required("Score is required"),
+  score: yup.number().integer().positive().required(),
   winner: yup.string().required(),
 });
 
-export default function SpielForm({
+export default function GameRoundForm({
   onGameSave,
   loading,
   players,
 }: Readonly<{
-  onGameSave: (game: GameRound) => void;
+  onGameSave: (gameRound: GameRound) => void;
   loading: boolean;
   players: string[];
 }>) {
   const { t } = useTranslation();
-  const formik = useFormik({
+  const formik = useFormik<FormValue>({
     initialValues: {
       score: 0,
-      winner: "",
+      winner: undefined,
       vonHand: false,
     },
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
       onGameSave({
         ...values,
+        winner: values.winner ?? "",
         date: formatDate(new Date()),
       });
       resetForm();
@@ -68,6 +75,7 @@ export default function SpielForm({
           autoComplete="off"
           type="number"
           onFocus={(evt) => evt.target.select()}
+          autoFocus
         />
         <FormControl required error={formik.touched.winner && Boolean(formik.errors.score)}>
           <FormLabel sx={{ textAlign: "left" }}>{t("WINNER")}</FormLabel>

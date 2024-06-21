@@ -13,10 +13,10 @@ import { GameRound } from "@romme/model";
 import { gameDataLoader, GameDataQuery, useGameDataMutation } from "@romme/query";
 
 import GameDataSavedSnackbar from "../components/GameDataSavedSnackbar";
+import GameRoundForm from "../components/GameRoundForm";
 import GameTable from "../components/GameTable";
 import LoadingIndicator from "../components/LoadingIndicator";
 import Section from "../components/Section";
-import SpielForm from "../components/SpielForm";
 import Statistics from "../components/Statistics";
 
 export default function GamePage() {
@@ -60,7 +60,7 @@ export default function GamePage() {
           <Alert severity="info" sx={{ marginBottom: 4 }}>
             {players[gameRounds.length % players.length]} {t("MUST_DEAL_CARDS")} ...
           </Alert>
-          <SpielForm onGameSave={handleGameSave} loading={isLoading} players={players} />
+          <GameRoundForm onGameSave={handleGameSave} loading={isLoading} players={players} />
         </Section>
         <Section title={t("STATISTICS")} Icon={AutoGraphRoundedIcon}>
           <Statistics gameRounds={gameRounds} players={players} />
