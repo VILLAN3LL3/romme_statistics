@@ -2,7 +2,6 @@ import "./App.css";
 
 import i18n from "i18next";
 import { lazy, Suspense } from "react";
-import { useTranslation } from "react-i18next";
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
 
 import { Container, createTheme, ThemeProvider } from "@mui/material";
@@ -21,7 +20,6 @@ function App() {
   const locale = i18n.language === "en" ? enUS : deDE;
   const theme = { ...createTheme(), locale };
   const queryClient = new QueryClient();
-  const { t } = useTranslation();
 
   const router = createBrowserRouter([
     {
