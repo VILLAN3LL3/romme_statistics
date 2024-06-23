@@ -5,12 +5,12 @@ A small web application to manage the scoring history of Rommé games and evalua
 ## Tech Stack
 
 - Backend: NodeJS Express Server
-- Frontend: React (TypeScript) with Vite
+- Frontend: React (TypeScript) with Vite, Material UI
 - Data Persisting: JSON files
 
 ## Dev
 
-To run the app open the project folder in a terminal window.
+To run the app, open the project folder in a terminal window.
 For the backend:
 
 ```bash
