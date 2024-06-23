@@ -6,7 +6,7 @@ A small web application to manage the scoring history of Rommé games and evalua
 
 - Backend: NodeJS Express Server
 - Frontend: React (TypeScript) with Vite
-  Data Persisting: JSON files
+- Data Persisting: JSON files
 
 ## Dev
 
