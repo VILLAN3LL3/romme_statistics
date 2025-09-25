@@ -760,5 +760,65 @@
     "winner": "Micha",
     "vonHand": false,
     "date": "2024-06-21"
+  },
+  {
+    "score": 41,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 19,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 117,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 93,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 84,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 107,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 2,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 91,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2025-09-22"
+  },
+  {
+    "score": 8,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-25"
+  },
+  {
+    "score": 141,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2025-09-25"
   }
 ]

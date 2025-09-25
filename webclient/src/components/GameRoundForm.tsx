@@ -58,6 +58,7 @@ export default function GameRoundForm({
       });
       resetForm();
     },
+    enableReinitialize: true,
   });
 
   return (
@@ -94,7 +95,14 @@ export default function GameRoundForm({
         </FormControl>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox name="vonHand" onChange={formik.handleChange} onBlur={formik.handleBlur} />}
+            control={
+              <Checkbox
+                name="vonHand"
+                checked={formik.values.vonHand}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            }
             label={t("WITHIN_ONE_TURN") + "?"}
           />
         </FormGroup>
