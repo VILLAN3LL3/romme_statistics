@@ -820,5 +820,65 @@
     "winner": "Mira",
     "vonHand": true,
     "date": "2025-09-25"
+  },
+  {
+    "score": 95,
+    "winner": "Mira",
+    "vonHand": true,
+    "date": "2025-09-25"
+  },
+  {
+    "score": 8,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-25"
+  },
+  {
+    "score": 132,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2025-09-25"
+  },
+  {
+    "score": 14,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-27"
+  },
+  {
+    "score": 9,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-27"
+  },
+  {
+    "score": 2,
+    "winner": "Mira",
+    "vonHand": false,
+    "date": "2025-09-27"
+  },
+  {
+    "score": 95,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2025-09-27"
+  },
+  {
+    "score": 5,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2025-09-27"
+  },
+  {
+    "score": 54,
+    "winner": "Micha",
+    "vonHand": false,
+    "date": "2025-09-27"
+  },
+  {
+    "score": 67,
+    "winner": "Micha",
+    "vonHand": true,
+    "date": "2025-09-27"
   }
 ]

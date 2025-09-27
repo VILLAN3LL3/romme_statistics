@@ -32,9 +32,12 @@ export default function GameTable({ gameRounds, players }: Readonly<{ gameRounds
         </TableRow>
       </TableHead>
       <TableBody>
-        {gameRounds.map((gameRound, i, gameRounds) => (
-          <GameTableRow key={i} gameRound={gameRound} index={i} gameRounds={gameRounds} players={players} />
-        ))}
+        {[...gameRounds]
+          .map((gameRound, i) => ({ gameRound, i })) // Pair each round with its original index
+          .reverse() // Reverse the display order
+          .map(({ gameRound, i }) => (
+            <GameTableRow key={i} gameRound={gameRound} index={i} gameRounds={gameRounds} players={players} />
+          ))}
       </TableBody>
     </Table>
   );
